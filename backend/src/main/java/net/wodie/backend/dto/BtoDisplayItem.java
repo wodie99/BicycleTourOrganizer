@@ -17,8 +17,9 @@ public class BtoDisplayItem {
     @Id
     private String id;
     private String displayId;
+    private String category;
     private String titel1;
     private String titel2;
-    private String[] description;
+    private String description;
 
 }
