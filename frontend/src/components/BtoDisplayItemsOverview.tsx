@@ -13,7 +13,7 @@ export default function BtoDisplayItemsOverview({btoDisplayItems} : BtoDisplayIt
             <h1>Übersichtsseite</h1>
             {btoDisplayItems.map(item => <BtoDisplayItemCard btoDisplayItem={item} />)}
             <h1>BeispielUserSeite</h1>
-            {btoDisplayItems.filter((item) => item.category === "action" && item.assignment.owner === "U10")
+            {btoDisplayItems.filter((item) => item.category === "action")
                 .map(item => <BtoUserItemCard btoUserItem={item} />)}
 
         </div>
