@@ -9,9 +9,9 @@ export default function BtoUserItemCard({btoUserItem}: BtoUserItemsCardProps) {
 
     return(
         <div className={"bto-user-item-card"}>
-            <h1>{btoUserItem.titel1}</h1>
-            <h2>{btoUserItem.titel2}</h2>
-            <h3>{btoUserItem.category}</h3>
+            <h2>{btoUserItem.titel1}</h2>
+            <h3>{btoUserItem.titel2}</h3>
+            <h4>{btoUserItem.category}</h4>
             <Markup content = {btoUserItem.description} />
         </div>
     )

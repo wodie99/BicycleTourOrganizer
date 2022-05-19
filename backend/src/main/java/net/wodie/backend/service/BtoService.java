@@ -1,6 +1,6 @@
 package net.wodie.backend.service;
 
-import net.wodie.backend.dto.BtoDisplayItem;
+import net.wodie.backend.model.BtoItem;
 import net.wodie.backend.repository.BtoRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ public class BtoService {
         this.btoRepository = btoRepository;
     }
 
-    public List<BtoDisplayItem> getBtoDisplayItems() {
+    public List<BtoItem> getAllBtoItems() {
         return btoRepository.findAll();
 
     }

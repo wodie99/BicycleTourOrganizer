@@ -1,4 +1,4 @@
-package net.wodie.backend.dto;
+package net.wodie.backend.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,8 +11,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Document (collection= "btoItems")
-public class BtoDisplayItem {
+@Document(collection= "btoItems")
+public class BtoItem {
 
     @Id
     private String id;
@@ -21,5 +21,8 @@ public class BtoDisplayItem {
     private String titel1;
     private String titel2;
     private String description;
-
+    private String status;
+    private String actionOwner;
+    private String[] actionMembers;
+    private String[] actionNotMembers;
 }

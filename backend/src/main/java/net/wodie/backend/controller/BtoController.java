@@ -1,6 +1,6 @@
 package net.wodie.backend.controller;
 
-import net.wodie.backend.dto.BtoDisplayItem;
+import net.wodie.backend.model.BtoItem;
 import net.wodie.backend.service.BtoService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +10,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/btoItem")
-
 public class BtoController {
 
     private final BtoService btoService;
@@ -19,8 +18,8 @@ public class BtoController {
         this.btoService = btoService;
     }
 
-    @GetMapping("/display")
-    public List<BtoDisplayItem> getBtoDisplayItems() {
-        return btoService.getBtoDisplayItems();
+    @GetMapping()
+    public List<BtoItem> getAllBtoItems() {
+        return btoService.getAllBtoItems();
     }
 }
