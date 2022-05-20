@@ -18,8 +18,8 @@ public class BtoItem {
     private String id;
     private String displayId;
     private String category;
-    private String titel1;
-    private String titel2;
+    private String title1;
+    private String title2;
     private String description;
     private String status;
     private String actionOwner;
