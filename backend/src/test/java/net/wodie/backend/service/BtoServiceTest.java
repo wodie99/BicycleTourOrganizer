@@ -11,7 +11,6 @@ class BtoServiceTest {
     private final BtoRepository btoRepo = mock(BtoRepository.class);
     private final BtoService btoService = new BtoService(btoRepo);
 
-
     @Test
     void getAllBtoItems() {
         //GIVEN

@@ -47,7 +47,7 @@ class BtoControllerTest {
     @Test
     void getAllBtoItems_WrongApi_Error400() {
         //GIVEN
-        btoRepository.insert(initItem1());
+        btoRepository.insert(initItem2());
 
         //WHEN
         testClient.get()
