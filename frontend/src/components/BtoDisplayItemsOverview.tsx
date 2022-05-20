@@ -10,11 +10,11 @@ type BtoDisplayItemsOverviewProps = {
 export default function BtoDisplayItemsOverview({btoDisplayItems} : BtoDisplayItemsOverviewProps){
     return(
         <div>
-            <h1>Übersichtsseite</h1>
+            <h1><u>Übersichtsseite</u></h1>
             {btoDisplayItems.map(item => <BtoDisplayItemCard btoDisplayItem={item} />)}
             <hr/><hr/>
-            <h1>Beispiel UserSeite</h1>
-            <h1>Darstellung eigener Ationen:</h1>
+            <h1><u>Beispiel User Seite (hier z.B. User "U11")</u></h1>
+            <h1>Darstellung eigener Aktionen:</h1>
             {btoDisplayItems.filter((item) => (item.category === "action"  &&  item.actionOwner === "U11"))
                 .map(item => <BtoUserItemCard btoUserItem={item} />)}
             <hr/>
