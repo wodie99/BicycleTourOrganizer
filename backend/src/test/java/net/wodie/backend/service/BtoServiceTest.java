@@ -3,10 +3,7 @@ package net.wodie.backend.service;
 import net.wodie.backend.model.BtoItem;
 import net.wodie.backend.repository.BtoRepository;
 import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
