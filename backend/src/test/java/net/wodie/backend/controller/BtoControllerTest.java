@@ -39,7 +39,7 @@ class BtoControllerTest {
                 .returnResult()
                 .getResponseBody();
 
-        //then
+        //THEN
         List<BtoItem> expected = List.of(initItem1());
         assertEquals(expected, actual);
     }
