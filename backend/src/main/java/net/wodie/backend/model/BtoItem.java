@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,11 +20,11 @@ public class BtoItem {
     private String id;
     private String displayId;
     private String category;
-    private String titel1;
-    private String titel2;
+    private String title1;
+    private String title2;
     private String description;
     private String status;
     private String actionOwner;
-    private String[] actionMembers;
-    private String[] actionNotMembers;
+    private List<String> actionMembers;
+    private List<String> actionNotMembers;
 }
