@@ -2,7 +2,6 @@ import {BtoDisplayItem} from "../model/BtoDisplayItem";
 import BtoDisplayItemCard from "./BtoDisplayItemCard";
 import BtoUserItemCard from "./BtoUserItemCard";
 
-
 type BtoDisplayItemsOverviewProps = {
     btoDisplayItems: BtoDisplayItem []
 }

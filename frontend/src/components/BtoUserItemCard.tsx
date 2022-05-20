@@ -6,10 +6,6 @@ type BtoUserItemsCardProps = {
 }
 
 export default function BtoUserItemCard({btoUserItem}: BtoUserItemsCardProps) {
-
-    console.log(btoUserItem.actionMembers)
-    console.log(btoUserItem.actionNotMembers)
-
     return(
         <div className={"bto-user-item-card"}>
             <h2>Aktion: {btoUserItem.title1}</h2>

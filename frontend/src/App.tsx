@@ -5,7 +5,6 @@ import BtoDisplayItemsOverview from "./components/BtoDisplayItemsOverview";
 
 function App() {
   const {btoDisplayItems} = useBtoDisplayItems();
-
   return (
     <div className="App">
       <BtoDisplayItemsOverview btoDisplayItems={btoDisplayItems}/>

@@ -9,7 +9,6 @@ export default function useBtoDisplayItems() {
         getAllBtoDisplayItems()
             .then(allBtoDisplayItems => setBtoDisplayitems(allBtoDisplayItems))
             .catch(() => alert("Connection failed! Please retry later."))
-
     },[])
 
     return {btoDisplayItems}
