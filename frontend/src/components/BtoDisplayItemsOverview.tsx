@@ -17,11 +17,11 @@ export default function BtoDisplayItemsOverview({btoDisplayItems} : BtoDisplayIt
             {btoDisplayItems.filter((item) => (item.category === "action"  &&  item.actionOwner === "U11"))
                 .map(item => <BtoUserItemCard btoUserItem={item} />)}
             <hr/>
-            <h1>Aktionen an denen man teilnimmt:</h1>
+            <h1>Aktionen an denen Du teilnimmst:</h1>
             {btoDisplayItems.filter((item) => (item.category === "action"  &&  item.actionMembers.includes("U11")))
                 .map(item => <BtoUserItemCard btoUserItem={item} />)}
             <hr/>
-            <h1>Aktionen an denen man nicht teilnimmt:</h1>
+            <h1>Aktionen an denen Du nicht teilnimmst:</h1>
             {btoDisplayItems.filter((item) => (item.category === "action"  &&  item.actionNotMembers.includes("U11")))
                 .map(item => <BtoUserItemCard btoUserItem={item} />)}
             <hr/>
