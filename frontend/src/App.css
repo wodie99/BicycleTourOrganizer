@@ -1,4 +1,6 @@
 .App {
+  width: 500px;
+  background-color: #e7e7e7;
   text-align: left;
   padding:15px;
 }

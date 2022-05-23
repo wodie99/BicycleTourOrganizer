@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.css';
-
+import useBtoDisplayItems from "./hooks/useBtoDisplayItems";
+import BtoDisplayItemsOverview from "./components/BtoDisplayItemsOverview";
 
 function App() {
-
+  const {btoDisplayItems} = useBtoDisplayItems();
   return (
     <div className="App">
-        <h1>Hallo Welt</h1>
+      <BtoDisplayItemsOverview btoDisplayItems={btoDisplayItems}/>
     </div>
   );
 }
