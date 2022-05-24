@@ -1,0 +1,35 @@
+header {
+    display: flex;
+    flex-direction: row;
+    width: 460px;
+    height: 105px;
+    background-color: #616161;
+    position: fixed;
+}
+
+a {
+    font-size:18px;
+    padding-right:10px;
+    color: lightgrey;
+}
+
+.Row1 {
+    font-size: 22px;
+    padding-left: 20px;
+    padding-top: 25px;
+    width: 500px;
+    display: flex;
+    justify-content: left;
+    height: 80px;
+    color: lightgrey;
+    position: fixed;
+}
+
+.Row2 {
+    width: 460px;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    padding-top: 75px;
+    position: fixed;
+}

@@ -17,7 +17,8 @@ Auf einer der benutzerspezifischen Seite, werden nochmals alle Aktionen des Benu
 - Aktionen an denen der Benutzer teilnimmt
 - Aktionen von denen sich der Benutzer abgemeldet hat
 
-Im Moment existiert eine Grobanzeige der Applikation. Hierbei wird die Übersichtsseite und die personalisierte Seite, für Beispieluser 'U11', untereinander angezeigt.
+Im Moment werden die Daten aus der DB heraus angezeigt.
+Es gibt einen einfachen Header mit einer Übersichtsseite und der Userseite (für Beispieluser 'U11').
 Eingabemöglichkeiten existieren noch nicht.
 
 Der momentane Stand ist zu sehen: [Link zu Heroku] (https://projekt-bto.herokuapp.com/)
