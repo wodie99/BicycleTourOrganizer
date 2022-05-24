@@ -2,10 +2,10 @@ import React from 'react';
 import './App.css';
 import useBtoDisplayItems from "./hooks/useBtoDisplayItems";
 import {Route, Routes} from "react-router-dom";
-import BtoUserItemsOverview from "./components/BtoUserItemsOverview";
 import Header from "./components/Header";
-import Impressum from "./components/Impressum";
-import BtoDisplayItemCard from "./components/BtoDisplayItemCard";
+import Logout from "./components/Logout";
+import BtoItemsOverview from "./components/BtoItemsOverview";
+import BtoUsersOverview from "./components/BtoUsersOverview";
 
 function App() {
   const {btoDisplayItems} = useBtoDisplayItems();
@@ -14,9 +14,9 @@ function App() {
 
               <Header />
               <Routes>
-                  <Route path={"/"} element={btoDisplayItems.map(item => <BtoDisplayItemCard btoDisplayItem={item} />)}/>
-                  <Route path={"/p1"} element={<BtoUserItemsOverview btoDisplayItems={btoDisplayItems}/>}/>
-                  <Route path={"/p2"} element={<Impressum />}/>
+                  <Route path={"/"} element={<BtoItemsOverview btoDisplayItems={btoDisplayItems}/>}/>
+                  <Route path={"/userpage"} element={<BtoUsersOverview btoDisplayItems={btoDisplayItems}/>}/>
+                  <Route path={"/logout"} element={<Logout/>}/>
               </Routes>
 
       </div>
