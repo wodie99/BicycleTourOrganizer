@@ -1,14 +1,14 @@
 import { Markup } from "interweave";
 import {BtoDisplayItem} from "../model/BtoDisplayItem";
 
-type BtoDisplayItemsCardProps = {
+type BtoItemsCardProps = {
     btoDisplayItem: BtoDisplayItem;
 }
 
-export default function BtoDisplayItemCard({btoDisplayItem}: BtoDisplayItemsCardProps) {
+export default function BtoItemCard({btoDisplayItem}: BtoItemsCardProps) {
 
     return(
-        <div className={"bto-display-item-card"}>
+        <div className={"bto-item-card"}>
             <h1>{btoDisplayItem.title1}</h1>
             <h2>{btoDisplayItem.title2}</h2>
             <Markup content = {btoDisplayItem.description} />

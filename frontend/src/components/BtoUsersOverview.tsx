@@ -1,17 +1,14 @@
 import {BtoDisplayItem} from "../model/BtoDisplayItem";
-import BtoDisplayItemCard from "./BtoDisplayItemCard";
 import BtoUserItemCard from "./BtoUserItemCard";
+import "../style/BtoUsersOverview.css"
 
-type BtoDisplayItemsOverviewProps = {
+type BtoUsersOverviewProps = {
     btoDisplayItems: BtoDisplayItem []
 }
 
-export default function BtoDisplayItemsOverview({btoDisplayItems} : BtoDisplayItemsOverviewProps){
+export default function BtoUsersOverview({btoDisplayItems} : BtoUsersOverviewProps){
     return(
-        <div>
-            <h1><u>Übersichtsseite</u></h1>
-            {btoDisplayItems.map(item => <BtoDisplayItemCard btoDisplayItem={item} />)}
-            <hr/><hr/>
+        <div className={"bto-users-overview"}>
             <h1><u>Beispiel User Seite (hier z.B. User "U11")</u></h1>
             <h1>Darstellung eigener Aktionen:</h1>
             {btoDisplayItems.filter((item) => (item.category === "action"  &&  item.actionOwner === "U11"))
@@ -26,7 +23,6 @@ export default function BtoDisplayItemsOverview({btoDisplayItems} : BtoDisplayIt
                 .map(item => <BtoUserItemCard btoUserItem={item} />)}
             <hr/>
             <h2>Ende</h2>
-
         </div>
     )
 }
