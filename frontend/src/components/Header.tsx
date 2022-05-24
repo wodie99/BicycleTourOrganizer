@@ -1,4 +1,4 @@
-import {Link, NavLink} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import "../style/Header.css"
 
 export default function Header() {
@@ -8,7 +8,7 @@ export default function Header() {
         </div>
         <div className={"Row2"}>
             <div>
-                <Link to="/">Übersicht</Link>
+                <NavLink to="/">Übersicht</NavLink>
             </div>
             <div>
                 <NavLink to="/userpage">Useransicht</NavLink>

@@ -9,9 +9,7 @@ type BtoItemsOverviewProps = {
 export default function BtoItemsOverview({btoDisplayItems} : BtoItemsOverviewProps){
     return(
         <div className={"bto-item-overview"}>
-            <h1><u>Übersichtsseite</u></h1>
             {btoDisplayItems.map(item => <BtoDisplayItemCard btoDisplayItem={item} />)}
-            <hr/><hr/>
         </div>
     )
 }
