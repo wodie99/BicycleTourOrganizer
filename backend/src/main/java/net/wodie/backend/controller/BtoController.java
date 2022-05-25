@@ -21,6 +21,7 @@ public class BtoController {
         return btoService.getAllBtoItems();
     }
 
+    @SuppressWarnings("java:S4684")
     @PutMapping()
     public BtoItem updateBtoItemById(@RequestBody BtoItem updatedBtoItem) {
         return btoService.updateBtoItemByID(updatedBtoItem);
