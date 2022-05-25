@@ -18,4 +18,8 @@ public class BtoService {
         return btoRepository.findAll();
 
     }
+
+    public BtoItem updateBtoItemByID(BtoItem updatedBtoItem) {
+        return btoRepository.save(updatedBtoItem);
+    }
 }

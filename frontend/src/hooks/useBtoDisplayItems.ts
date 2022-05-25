@@ -1,15 +1,24 @@
 import {useEffect, useState} from "react";
 import {BtoDisplayItem} from "../model/BtoDisplayItem";
-import {getAllBtoDisplayItems} from "../service/api-service";
+import {getAllBtoDisplayItems, putBtoItem} from "../service/api-service";
 
 export default function useBtoDisplayItems() {
     const [btoDisplayItems, setBtoDisplayitems] = useState<BtoDisplayItem[]>([]);
 
-    useEffect(()=>{
+    useEffect(() => {
         getAllBtoDisplayItems()
             .then(allBtoDisplayItems => setBtoDisplayitems(allBtoDisplayItems))
             .catch(() => alert("Connection failed! Please retry later."))
-    },[])
+    }, [])
 
-    return {btoDisplayItems}
+    const changeBtoItem = (updatedBtoItem: BtoDisplayItem) => {
+        putBtoItem(updatedBtoItem)
+            .then(updatedBtoItem => {
+                setBtoDisplayitems(btoDisplayItems.map(item => item.id === updatedBtoItem.id ? updatedBtoItem : item))
+                return updatedBtoItem
+            })
+            .catch(() => alert("Connection failed! Please retry later."))
+    }
+
+return {btoDisplayItems, changeBtoItem}
 }
