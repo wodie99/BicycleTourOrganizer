@@ -26,6 +26,19 @@ class BtoServiceTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    void updateBtoItemByID() {
+        //GIVEN
+        when(btoRepo.save(initItem1a())).thenReturn(initItem1a());
+
+        //WHEN
+        BtoItem actual = btoService.updateBtoItemByID(initItem1a());
+
+        //THEN
+        verify(btoRepo).save(initItem1a());
+        assertEquals(initItem1a(), actual);
+    }
+
     private BtoItem initItem1() {
         return BtoItem.builder()
                 .id("3")
@@ -35,6 +48,21 @@ class BtoServiceTest {
                 .title2("Second Day")
                 .description("<p>Testeintrag for No3</p>")
                 .status("open")
+                .actionOwner("U11")
+                .actionMembers(List.of("U12","U13"))
+                .actionNotMembers(List.of("U15"))
+                .build();
+    }
+
+    private BtoItem initItem1a() {
+        return BtoItem.builder()
+                .id("3")
+                .displayId("t02c1o01")
+                .category("action")
+                .title1("Actionpoint 03")
+                .title2("Second Day")
+                .description("<p>Testeintrag for No3</p>")
+                .status("finished")
                 .actionOwner("U11")
                 .actionMembers(List.of("U12","U13"))
                 .actionNotMembers(List.of("U15"))

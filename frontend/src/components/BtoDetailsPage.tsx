@@ -5,14 +5,16 @@ import {Markup} from "interweave";
 import "../style/BtoDetailsPage.css"
 
 type DetailsPageProps = {
-    btoDisplayItems: BtoDisplayItem[];
+    btoDisplayItems: BtoDisplayItem[]
+    changeBtoItem: (updatedBtoItem: BtoDisplayItem) => void
 }
 
-export default function BtoDetailsPage({btoDisplayItems}: DetailsPageProps) {
+export default function BtoDetailsPage({btoDisplayItems, changeBtoItem}: DetailsPageProps) {
 
     const {id} = useParams()
     const [btoItem, setBtoItem] = useState<BtoDisplayItem>()
     const navigate = useNavigate()
+    const dummyUser = "U11"
 
     useEffect(() => {
         setBtoItem(btoDisplayItems.find((btoItem) => (btoItem.id === id)))
@@ -20,6 +22,38 @@ export default function BtoDetailsPage({btoDisplayItems}: DetailsPageProps) {
 
     const onClickBack = () => {
         navigate(`/`)
+    }
+
+    const onClickMember = () => {
+        if (btoItem) {
+            if (!btoItem.actionMembers.includes(dummyUser)) {
+                btoItem.actionMembers = [...btoItem.actionMembers, dummyUser]
+            }
+            if (btoItem.actionNotMembers.includes(dummyUser)) {
+                btoItem.actionNotMembers = remove(btoItem.actionNotMembers, dummyUser)
+            }
+            changeBtoItem(btoItem)
+        }
+    }
+
+    const onClickNoMember = () => {
+        if (btoItem) {
+            if (!btoItem.actionNotMembers.includes(dummyUser)) {
+                btoItem.actionNotMembers = [...btoItem.actionNotMembers, dummyUser]
+            }
+            if (btoItem.actionMembers.includes(dummyUser)) {
+                btoItem.actionMembers = remove(btoItem.actionMembers, dummyUser)
+            }
+            changeBtoItem(btoItem)
+        }
+    }
+
+    function remove(arr: string[], item: string) {
+        var index = arr.indexOf(item);
+        return [
+            ...arr.slice(0, index),
+            ...arr.slice(index + 1)
+        ];
     }
 
     return (<div>
@@ -40,6 +74,9 @@ export default function BtoDetailsPage({btoDisplayItems}: DetailsPageProps) {
         }
         <div>
             <button onClick={onClickBack}>zurück</button>
+            <span> Teilnehmen? </span>
+            <button onClick={onClickMember}>ja</button>
+            <button onClick={onClickNoMember}>nein</button>
         </div>
     </div>)
 }
