@@ -9,8 +9,7 @@ type BtoUsersOverviewProps = {
 export default function BtoUsersOverview({btoDisplayItems} : BtoUsersOverviewProps){
     return(
         <div className={"bto-users-overview"}>
-            <h1><u>Beispiel User Seite (hier z.B. User "U11")</u></h1>
-            <h1>Darstellung eigener Aktionen:</h1>
+            <h1>Darstellung eigener Aktionen (Bsp. U11):</h1>
             {btoDisplayItems.filter((item) => (item.category === "action"  &&  item.actionOwner === "U11"))
                 .map(item => <BtoUserItemCard btoUserItem={item} />)}
             <hr/>
