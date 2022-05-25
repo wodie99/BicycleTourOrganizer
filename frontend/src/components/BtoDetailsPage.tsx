@@ -15,8 +15,7 @@ export default function BtoDetailsPage({btoDisplayItems}: DetailsPageProps) {
     const navigate = useNavigate()
 
     useEffect(() => {
-        let tempArray: BtoDisplayItem[] = (btoDisplayItems.filter((btoItem) => (btoItem.id === id)))
-        setBtoItem(tempArray[0])
+        setBtoItem(btoDisplayItems.find((btoItem) => (btoItem.id === id)))
     }, [btoDisplayItems,id])
 
     const onClickBack = () => {
