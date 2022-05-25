@@ -36,7 +36,7 @@ export default function BtoDetailsPage({btoDisplayItems}: DetailsPageProps) {
             </div>
             :
             <div className={"details-page-error"}>
-                <p>ShoppingItem not Found</p>
+                <p>BtoItem not Found</p>
             </div>
         }
         <div>
