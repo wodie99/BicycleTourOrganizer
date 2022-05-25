@@ -18,7 +18,7 @@ Auf einer der benutzerspezifischen Seite, werden nochmals alle Aktionen des Benu
 - Aktionen von denen sich der Benutzer abgemeldet hat
 
 Im Moment werden die Daten aus der DB heraus angezeigt.
-Es gibt einen einfachen Header mit einer Übersichtsseite und der Userseite (für Beispieluser 'U11').
+Es gibt einen einfachen Header mit einer Übersichtsseite, Userseite (für Beispieluser 'U11') und Detailsspage für Aktionen.
 Eingabemöglichkeiten existieren noch nicht.
 
 Der momentane Stand ist zu sehen: [Link zu Heroku] (https://projekt-bto.herokuapp.com/)

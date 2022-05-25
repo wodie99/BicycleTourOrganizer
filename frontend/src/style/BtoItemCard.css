@@ -1,0 +1,18 @@
+.bto-item-action-card {
+    background-color: #c2bfbf;
+    border-color: #616161;
+    border-style: solid;
+    padding: 8px;
+}
+
+.action-title1 {
+    font-size: 18px;
+}
+
+.action-title2 {
+    font-size: 16px;
+}
+
+button  {
+    margin-left: 40px ;
+}

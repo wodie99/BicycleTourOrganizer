@@ -1,17 +1,31 @@
-import { Markup } from "interweave";
+import {Markup} from "interweave";
 import {BtoDisplayItem} from "../model/BtoDisplayItem";
+import "../style/BtoItemCard.css"
+import {useNavigate} from "react-router-dom";
 
-type BtoItemsCardProps = {
+type BtoItemCardProps = {
     btoDisplayItem: BtoDisplayItem;
 }
 
-export default function BtoItemCard({btoDisplayItem}: BtoItemsCardProps) {
+export default function BtoItemCard({btoDisplayItem}: BtoItemCardProps) {
+    const navigate = useNavigate();
 
-    return(
-        <div className={"bto-item-card"}>
-            <h1>{btoDisplayItem.title1}</h1>
-            <h2>{btoDisplayItem.title2}</h2>
-            <Markup content = {btoDisplayItem.description} />
+    return (<div>
+            {btoDisplayItem.category === "action" ?
+                <div className={"bto-item-action-card"}>
+                    <div className={"action-title1"}>Aktion: {btoDisplayItem.title1}</div>
+                    <div className={"action-title2"}> {btoDisplayItem.title2}</div>
+                    <p className={"action-status"}>Status: {btoDisplayItem.status}
+                        <button onClick={() => navigate(`btoItem/${btoDisplayItem.id}`)}>Details</button>
+                    </p>
+                </div>
+                :
+                <div className={"bto-item-card"}>
+                    <h1>{btoDisplayItem.title1}</h1>
+                    <h2>{btoDisplayItem.title2}</h2>
+                    <Markup content={btoDisplayItem.description}/>
+                </div>
+            }
         </div>
     )
 }
