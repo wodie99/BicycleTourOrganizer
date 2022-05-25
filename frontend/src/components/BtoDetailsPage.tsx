@@ -17,9 +17,8 @@ export default function BtoDetailsPage({btoDisplayItems, changeBtoItem}: Details
     const dummyUser = "U11"
 
     useEffect(() => {
-        let tempArray: BtoDisplayItem[] = (btoDisplayItems.filter((btoItem) => (btoItem.id === id)))
-        setBtoItem(tempArray[0])
-    }, [btoDisplayItems, id])
+        setBtoItem(btoDisplayItems.find((btoItem) => (btoItem.id === id)))
+    }, [btoDisplayItems,id])
 
     const onClickBack = () => {
         navigate(`/`)
