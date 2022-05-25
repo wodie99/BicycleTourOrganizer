@@ -6,7 +6,7 @@ export const getAllBtoDisplayItems: () => Promise<BtoDisplayItem[]> = () => {
         .then(response => response.data)
 }
 
-export const putBtoItem: (updatedShoppingItem: BtoDisplayItem) => Promise<BtoDisplayItem> = (updatedBtoItem) => {
+export const putBtoItem: (updatedDisplayItem: BtoDisplayItem) => Promise<BtoDisplayItem> = (updatedBtoItem) => {
     return axios.put("/api/btoItem", updatedBtoItem)
         .then(response => response.data)
 }
