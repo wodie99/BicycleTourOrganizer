@@ -63,7 +63,6 @@ class BtoControllerTest {
         btoRepository.insert(initItem1());
 
         //WHEN
-
         BtoItem actual = testClient.put()
                 .uri("/api/btoItem")
                 .bodyValue(initItem1a())
@@ -74,7 +73,7 @@ class BtoControllerTest {
                 .getResponseBody();
 
         //THEN
-        assertEquals(initItem1a(),actual);
+        assertEquals(initItem1a(), actual);
     }
 
     @Test
@@ -97,7 +96,7 @@ class BtoControllerTest {
                 .getResponseBody();
 
         //THEN
-        assertNotEquals(initItem1a(),actual);
+        assertNotEquals(initItem1a(), actual);
 
 
     }
