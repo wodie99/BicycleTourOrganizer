@@ -9,20 +9,22 @@ import BtoUsersOverview from "./components/BtoUsersOverview";
 import BtoDetailsPage from "./components/BtoDetailsPage";
 
 function App() {
-  const {btoDisplayItems} = useBtoDisplayItems();
-  return (
-      <div className="App">
+    const {btoDisplayItems, changeBtoItem} = useBtoDisplayItems();
+    return (
+        <div className="App">
 
-              <Header />
-              <Routes>
-                  <Route path={"/"} element={<BtoItemsOverview btoDisplayItems={btoDisplayItems}/>}/>
-                  <Route path={"/userpage"} element={<BtoUsersOverview btoDisplayItems={btoDisplayItems}/>}/>
-                  <Route path={"/logout"} element={<Logout/>}/>
-                  <Route path={'/btoItem/:id'} element={<BtoDetailsPage btoDisplayItems={btoDisplayItems}/>}/>
-              </Routes>
+            <Header/>
+            <Routes>
+                <Route path={"/"} element={<BtoItemsOverview btoDisplayItems={btoDisplayItems}/>}/>
+                <Route path={"/userpage"} element={<BtoUsersOverview btoDisplayItems={btoDisplayItems}/>}/>
+                <Route path={"/logout"} element={<Logout/>}/>
+                <Route path={'/btoItem/:id'} element={<BtoDetailsPage
+                    btoDisplayItems={btoDisplayItems}
+                    changeBtoItem={changeBtoItem}/>}/>
+            </Routes>
 
-      </div>
-  );
+        </div>
+    );
 }
 
 export default App;

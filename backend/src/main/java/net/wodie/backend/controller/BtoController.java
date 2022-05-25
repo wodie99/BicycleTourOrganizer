@@ -2,9 +2,7 @@ package net.wodie.backend.controller;
 
 import net.wodie.backend.model.BtoItem;
 import net.wodie.backend.service.BtoService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,5 +19,11 @@ public class BtoController {
     @GetMapping()
     public List<BtoItem> getAllBtoItems() {
         return btoService.getAllBtoItems();
+    }
+
+    @PutMapping()
+    public BtoItem updateBtoItemById(@RequestBody BtoItem updatedBtoItem) {
+        return btoService.updateBtoItemByID(updatedBtoItem);
+
     }
 }
