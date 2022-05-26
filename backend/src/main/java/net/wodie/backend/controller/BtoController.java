@@ -23,8 +23,8 @@ public class BtoController {
 
     @SuppressWarnings("java:S4684")
     @PutMapping()
-    public BtoItem updateBtoItemById(@RequestBody BtoItem updatedBtoItem) {
-        return btoService.updateBtoItemByID(updatedBtoItem);
+    public BtoItem updateBtoItem(@RequestBody BtoItem updatedBtoItem) {
+        return btoService.updateBtoItem(updatedBtoItem);
 
     }
 }

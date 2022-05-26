@@ -2,11 +2,14 @@ package net.wodie.backend.controller;
 
 import net.wodie.backend.model.BtoItem;
 import net.wodie.backend.repository.BtoRepository;
+import net.wodie.backend.security.model.AppUser;
+import net.wodie.backend.security.repository.AppUserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.reactive.server.WebTestClient;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 
@@ -14,6 +17,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class BtoControllerTest {
+
+    private String jwtToken;
+
+    @Autowired
+    private AppUserRepository appUserRepository;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @Autowired
     private WebTestClient testClient;
@@ -24,6 +35,8 @@ class BtoControllerTest {
     @BeforeEach
     public void cleanUp() {
         btoRepository.deleteAll();
+        appUserRepository.deleteAll();
+        jwtToken = generateJWTToken();
     }
 
     @Test
@@ -34,6 +47,7 @@ class BtoControllerTest {
         //WHEN
         List<BtoItem> actual = testClient.get()
                 .uri("/api/btoItem")
+                .headers(http -> http.setBearerAuth(jwtToken))
                 .exchange()
                 .expectStatus().is2xxSuccessful()
                 .expectBodyList(BtoItem.class)
@@ -53,6 +67,7 @@ class BtoControllerTest {
         //WHEN
         testClient.get()
                 .uri("/api/wrongBtoItem")
+                .headers(http -> http.setBearerAuth(jwtToken))
                 .exchange()
                 .expectStatus().is4xxClientError();
     }
@@ -65,6 +80,7 @@ class BtoControllerTest {
         //WHEN
         BtoItem actual = testClient.put()
                 .uri("/api/btoItem")
+                .headers(http -> http.setBearerAuth(jwtToken))
                 .bodyValue(initItem1a())
                 .exchange()
                 .expectStatus().is2xxSuccessful()
@@ -88,6 +104,7 @@ class BtoControllerTest {
                 .build();
         BtoItem actual = testClient.put()
                 .uri("/api/btoItem")
+                .headers(http -> http.setBearerAuth(jwtToken))
                 .bodyValue(updatedBtoItem)
                 .exchange()
                 .expectStatus().is2xxSuccessful()
@@ -145,4 +162,27 @@ class BtoControllerTest {
                 .actionNotMembers(List.of("U15"))
                 .build();
     }
+
+    private String generateJWTToken() {
+        String hashedPassword = passwordEncoder.encode("passwort");
+        AppUser testUser = AppUser.builder()
+                .username("testuser")
+                .id("123")
+                .password(hashedPassword)
+                .build();
+        appUserRepository.save(testUser);
+
+        return testClient.post()
+                .uri("/auth/login")
+                .bodyValue(AppUser.builder()
+                        .username("testuser")
+                        .id("123")
+                        .password("passwort")
+                        .build())
+                .exchange()
+                .expectBody(String.class)
+                .returnResult()
+                .getResponseBody();
+    }
+
 }
