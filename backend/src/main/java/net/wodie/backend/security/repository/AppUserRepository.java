@@ -9,9 +9,7 @@ import java.util.Optional;
 
 @Repository
 public interface AppUserRepository extends MongoRepository<AppUser, String> {
-    Optional<AppUser> findByUserName(String username);
+    Optional<AppUser> findByUsername(String username);
 
-    Optional<AppUserItemDto> findAppUserByUserName(String userName);
-
-
+    Optional<AppUserItemDto> findAppUserByUsername(String username);
 }

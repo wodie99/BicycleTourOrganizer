@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class AppUserItemDto {
-    private String userName;
+    private String username;
     private String id;
 }

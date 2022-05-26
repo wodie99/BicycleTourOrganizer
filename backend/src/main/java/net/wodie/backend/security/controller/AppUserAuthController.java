@@ -25,8 +25,8 @@ public class AppUserAuthController {
 
     @PostMapping("/login")
     public String login(@RequestBody AppUser appUser) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(appUser.getUserName(), appUser.getPassword()));
-        return jwtUtilService.createToken(appUser.getUserName());
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(appUser.getUsername(), appUser.getPassword()));
+        return jwtUtilService.createToken(appUser.getUsername());
     }
 
 }
