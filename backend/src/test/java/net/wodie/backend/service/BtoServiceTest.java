@@ -32,7 +32,7 @@ class BtoServiceTest {
         when(btoRepo.save(initItem1a())).thenReturn(initItem1a());
 
         //WHEN
-        BtoItem actual = btoService.updateBtoItemByID(initItem1a());
+        BtoItem actual = btoService.updateBtoItem(initItem1a());
 
         //THEN
         verify(btoRepo).save(initItem1a());

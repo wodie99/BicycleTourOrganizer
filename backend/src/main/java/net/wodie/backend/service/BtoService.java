@@ -19,7 +19,7 @@ public class BtoService {
 
     }
 
-    public BtoItem updateBtoItemByID(BtoItem updatedBtoItem) {
+    public BtoItem updateBtoItem(BtoItem updatedBtoItem) {
         return btoRepository.save(updatedBtoItem);
     }
 }
