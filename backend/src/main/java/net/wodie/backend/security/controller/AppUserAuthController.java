@@ -23,6 +23,7 @@ public class AppUserAuthController {
         this.jwtUtilService = jwtUtilService;
     }
 
+    @SuppressWarnings("java:S4684")
     @PostMapping("/login")
     public String login(@RequestBody AppUser appUser) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(appUser.getUsername(), appUser.getPassword()));
