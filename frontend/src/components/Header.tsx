@@ -7,11 +7,11 @@ export  default function Header() {
     const {token} = useContext(AuthContext);
 
     return <header>
-        <div className={"Row1"}>
+        <div className={"row1"}>
             <span className={"header-title"}><b>bicycle tour organizer</b></span>
         </div>
         {token ?
-            <div className={"Row2"}>
+            <div className={"row2"}>
                 <div>
                     <NavLink to="/">Übersicht</NavLink>
                 </div>
@@ -23,7 +23,7 @@ export  default function Header() {
                 </div>
             </div>
             :
-            <p className={"Row2-login"}>Login</p>
+            <p className={"row2-login"}>Login</p>
         }
     </header>
 }

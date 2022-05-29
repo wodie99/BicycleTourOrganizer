@@ -13,7 +13,7 @@ a {
     color: lightgrey;
 }
 
-.Row1 {
+.row1 {
     font-size: 22px;
     padding-left: 20px;
     padding-top: 25px;
@@ -25,7 +25,7 @@ a {
     position: fixed;
 }
 
-.Row2 {
+.row2 {
     width: 460px;
     display: flex;
     flex-direction: row;
@@ -34,7 +34,7 @@ a {
     position: fixed;
 }
 
-.Row2-login {
+.row2-login {
     width: 460px;
     display: flex;
     flex-direction: row;
