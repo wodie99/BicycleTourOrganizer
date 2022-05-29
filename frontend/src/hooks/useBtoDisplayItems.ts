@@ -7,8 +7,6 @@ import {AuthContext} from "../context/AuthProvider";
 export default function useBtoDisplayItems() {
     const [btoDisplayItems, setBtoDisplayitems] = useState<BtoDisplayItem[]>([]);
     const {token} = useContext(AuthContext);
-    // const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBbnRvbkEiLCJleHAiOjE2NTM1ODU1MzEsImlhdCI6MTY1MzU3MTEzMX0.oZMx6ZJHNeEgTTsHWgOxByXnDuyRcE9y-uEdv44O0KA"
-
 
     useEffect(() => {
         getAllBtoDisplayItems(token)

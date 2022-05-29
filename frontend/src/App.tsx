@@ -3,7 +3,7 @@ import './App.css';
 import useBtoDisplayItems from "./hooks/useBtoDisplayItems";
 import {Route, Routes} from "react-router-dom";
 import Header from "./components/Header";
-import Logout from "./components/Logout";
+import LogoutPage from "./components/LogoutPage";
 import BtoItemsOverview from "./components/BtoItemsOverview";
 import BtoUsersOverview from "./components/BtoUsersOverview";
 import BtoDetailsPage from "./components/BtoDetailsPage";
@@ -18,13 +18,12 @@ function App() {
     return (
         <div className="App">
             <ToastContainer/>
-            <Header/>
+            <Header />
             <Routes>
                 <Route element={<RequireAuth/>}>
-
                     <Route path={"/"} element={<BtoItemsOverview btoDisplayItems={btoDisplayItems}/>}/>
                     <Route path={"/userpage"} element={<BtoUsersOverview btoDisplayItems={btoDisplayItems} username={username}/>}/>
-                    <Route path={"/logout"} element={<Logout/>}/>
+                    <Route path={"/logout"} element={<LogoutPage setUsername={setUsername}/>}/>
                     <Route path={'/btoItem/:id'} element={<BtoDetailsPage
                         btoDisplayItems={btoDisplayItems}
                         changeBtoItem={changeBtoItem}
