@@ -1,9 +1,11 @@
 import {FormEvent, useContext, useState} from "react";
 import {AuthContext} from "../context/AuthProvider";
 
-
-export  default function LoginPage() {
-    const [username, setUsername] = useState<string>("");
+type LoginPageProps = {
+    username: string;
+    setUsername:  (username:string) => void;
+}
+export  default function LoginPage({username, setUsername}: LoginPageProps) {
     const [password, setPassword] = useState<string>("");
 
     const {login} = useContext(AuthContext)

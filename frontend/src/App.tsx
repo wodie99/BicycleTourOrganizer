@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import useBtoDisplayItems from "./hooks/useBtoDisplayItems";
 import {Route, Routes} from "react-router-dom";
@@ -14,6 +14,7 @@ import RequireAuth from "./routing/RequireAuth";
 
 function App() {
     const {btoDisplayItems, changeBtoItem} = useBtoDisplayItems();
+    const [username, setUsername] = useState<string>("");
     return (
         <div className="App">
             <ToastContainer/>
@@ -22,13 +23,14 @@ function App() {
                 <Route element={<RequireAuth/>}>
 
                     <Route path={"/"} element={<BtoItemsOverview btoDisplayItems={btoDisplayItems}/>}/>
-                    <Route path={"/userpage"} element={<BtoUsersOverview btoDisplayItems={btoDisplayItems}/>}/>
+                    <Route path={"/userpage"} element={<BtoUsersOverview btoDisplayItems={btoDisplayItems} username={username}/>}/>
                     <Route path={"/logout"} element={<Logout/>}/>
                     <Route path={'/btoItem/:id'} element={<BtoDetailsPage
                         btoDisplayItems={btoDisplayItems}
-                        changeBtoItem={changeBtoItem}/>}/>
+                        changeBtoItem={changeBtoItem}
+                        username={username}/>}/>
                 </Route>
-                <Route path={'/login'} element={<LoginPage />}/>
+                <Route path={'/login'} element={<LoginPage username={username} setUsername={setUsername}/>}/>
             </Routes>
 
         </div>

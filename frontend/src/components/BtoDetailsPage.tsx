@@ -5,16 +5,16 @@ import {Markup} from "interweave";
 import "../style/BtoDetailsPage.css"
 
 type DetailsPageProps = {
-    btoDisplayItems: BtoDisplayItem[]
-    changeBtoItem: (updatedBtoItem: BtoDisplayItem) => void
+    btoDisplayItems: BtoDisplayItem[];
+    changeBtoItem: (updatedBtoItem: BtoDisplayItem) => void;
+    username: string;
 }
 
-export default function BtoDetailsPage({btoDisplayItems, changeBtoItem}: DetailsPageProps) {
+export default function BtoDetailsPage({btoDisplayItems, changeBtoItem, username}: DetailsPageProps) {
 
     const {id} = useParams()
     const [btoItem, setBtoItem] = useState<BtoDisplayItem>()
     const navigate = useNavigate()
-    const dummyUser = "U11"
 
     useEffect(() => {
         setBtoItem(btoDisplayItems.find((btoItem) => (btoItem.id === id)))
@@ -26,11 +26,11 @@ export default function BtoDetailsPage({btoDisplayItems, changeBtoItem}: Details
 
     const onClickMember = () => {
         if (btoItem) {
-            if (!btoItem.actionMembers.includes(dummyUser)) {
-                btoItem.actionMembers = [...btoItem.actionMembers, dummyUser]
+            if (!btoItem.actionMembers.includes(username)) {
+                btoItem.actionMembers = [...btoItem.actionMembers, username]
             }
-            if (btoItem.actionNotMembers.includes(dummyUser)) {
-                btoItem.actionNotMembers = remove(btoItem.actionNotMembers, dummyUser)
+            if (btoItem.actionNotMembers.includes(username)) {
+                btoItem.actionNotMembers = remove(btoItem.actionNotMembers, username)
             }
             changeBtoItem(btoItem)
         }
@@ -38,11 +38,11 @@ export default function BtoDetailsPage({btoDisplayItems, changeBtoItem}: Details
 
     const onClickNoMember = () => {
         if (btoItem) {
-            if (!btoItem.actionNotMembers.includes(dummyUser)) {
-                btoItem.actionNotMembers = [...btoItem.actionNotMembers, dummyUser]
+            if (!btoItem.actionNotMembers.includes(username)) {
+                btoItem.actionNotMembers = [...btoItem.actionNotMembers, username]
             }
-            if (btoItem.actionMembers.includes(dummyUser)) {
-                btoItem.actionMembers = remove(btoItem.actionMembers, dummyUser)
+            if (btoItem.actionMembers.includes(username)) {
+                btoItem.actionMembers = remove(btoItem.actionMembers, username)
             }
             changeBtoItem(btoItem)
         }
