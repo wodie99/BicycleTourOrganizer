@@ -23,9 +23,7 @@ export  default function Header() {
                 </div>
             </div>
             :
-            <div className={"Row2-login"}>
-                <p>Login</p>
-            </div>
+            <p className={"Row2-login"}>Login</p>
         }
     </header>
 }
