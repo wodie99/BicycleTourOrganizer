@@ -33,3 +33,12 @@ a {
     padding-top: 75px;
     position: fixed;
 }
+
+.Row2-login {
+    width: 460px;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    padding-top: 75px;
+    padding-right: 25px;
+}

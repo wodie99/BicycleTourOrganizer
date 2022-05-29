@@ -72,11 +72,12 @@ export default function BtoDetailsPage({btoDisplayItems, changeBtoItem, username
                 <p>BtoItem not Found</p>
             </div>
         }
-        <div>
-            <button onClick={onClickBack}>zurück</button>
+        <div className={"details-part2"}>
             <span> Teilnehmen? </span>
             <button onClick={onClickMember}>ja</button>
             <button onClick={onClickNoMember}>nein</button>
+            <span className={"space-between"}>oder:</span>
+            <button onClick={onClickBack}>zurück</button>
         </div>
     </div>)
 }
