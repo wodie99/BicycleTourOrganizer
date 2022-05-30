@@ -9,9 +9,11 @@ export default function useBtoDisplayItems() {
     const {token} = useContext(AuthContext);
 
     useEffect(() => {
-        getAllBtoDisplayItems(token)
-            .then(allBtoDisplayItems => setBtoDisplayitems(allBtoDisplayItems))
-            .catch(() => toast.error("Connection failed! Please retry later."))
+        if (token) {
+            getAllBtoDisplayItems(token)
+                .then(allBtoDisplayItems => setBtoDisplayitems(allBtoDisplayItems))
+                .catch(() => toast.error("Connection failed!!! Please retry later."))
+        }
     }, [token])
 
     const changeBtoItem = (updatedBtoItem: BtoDisplayItem) => {
@@ -20,7 +22,7 @@ export default function useBtoDisplayItems() {
                 setBtoDisplayitems(btoDisplayItems.map(item => item.id === updatedBtoItem.id ? updatedBtoItem : item))
                 return updatedBtoItem
             })
-            .catch(() => toast.error("Connection failed! Please retry later."))
+            .catch(() => toast.error("Connection failed!! Please retry later."))
     }
 
 return {btoDisplayItems, changeBtoItem}
