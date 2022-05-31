@@ -8,9 +8,17 @@ export const getAllBtoDisplayItems: (token?: string) => Promise<BtoDisplayItem[]
         .then(response => response.data)
 }
 
-export const putBtoItem: (updatedShoppingItem: BtoDisplayItem, token?: string) =>
+export const putBtoItem: (updatedBtoItem: BtoDisplayItem, token?: string) =>
     Promise<BtoDisplayItem> = (updatedBtoItem, token) => {
     return axios.put("/api/btoItem", updatedBtoItem, token
+        ? {headers: {"Authorization": token}}
+        : {})
+        .then(response => response.data)
+}
+
+export const getBtoStatusById: (id: string, token?: string) =>
+    Promise<string> = (id, token) => {
+    return axios.get(`/api/btoItem/status/${id}`, token
         ? {headers: {"Authorization": token}}
         : {})
         .then(response => response.data)

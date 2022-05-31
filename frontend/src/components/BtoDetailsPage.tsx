@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import {BtoDisplayItem} from "../model/BtoDisplayItem";
 import {Markup} from "interweave";
 import "../style/BtoDetailsPage.css"
+import useBtoItemStatus from "../hooks/useBtoItemStatus";
 
 type DetailsPageProps = {
     btoDisplayItems: BtoDisplayItem[];
@@ -14,14 +15,21 @@ export default function BtoDetailsPage({btoDisplayItems, changeBtoItem, username
 
     const {id} = useParams()
     const [btoItem, setBtoItem] = useState<BtoDisplayItem>()
+    const {btoItemStatus, getStatusById} = useBtoItemStatus()
     const navigate = useNavigate()
 
     useEffect(() => {
         setBtoItem(btoDisplayItems.find((btoItem) => (btoItem.id === id)))
-    }, [btoDisplayItems,id])
+    }, [btoDisplayItems, id])
 
     const onClickBack = () => {
         navigate(`/`)
+    }
+
+    const onClickStatus = () => {
+        if (id) {
+            getStatusById(id)
+        }
     }
 
     const onClickMember = () => {
@@ -56,28 +64,34 @@ export default function BtoDetailsPage({btoDisplayItems, changeBtoItem, username
         ];
     }
 
-    return (<div>
-        {btoItem ?
-            <div className={"details-page"}>
-                <h1>{btoItem.title1}</h1>
-                <h2>{btoItem.title2}</h2>
-                <Markup content={btoItem.description}/>
-                <hr/>
-                <p>Status der Aktion: {btoItem.status}</p>
-                <p>Teilnehmer: {btoItem.actionMembers} </p>
-                <p> Absagen: {btoItem.actionNotMembers}</p>
+    return (
+        <div>
+            {btoItem ?
+                <div className={"details-page"}>
+                    <h1>{btoItem.title1}</h1>
+                    <h2>{btoItem.title2}</h2>
+                    <Markup content={btoItem.description}/>
+                    <hr/>
+                    <p>Status der Aktion: {btoItem.status}</p>
+                    <p>Teilnehmer: {btoItem.actionMembers} </p>
+                    <p> Absagen: {btoItem.actionNotMembers}</p>
+                </div>
+                :
+                <div className={"details-page-error"}>
+                    <p>BtoItem not Found</p>
+                </div>
+            }
+            <div className={"details-part2"}>
+                <span> Teilnehmen? </span>
+                <button onClick={onClickMember}>ja</button>
+                <button onClick={onClickNoMember}>nein</button>
+                <span className={"space-between"}>oder:</span>
+                <button onClick={onClickBack}>zurück</button>
             </div>
-            :
-            <div className={"details-page-error"}>
-                <p>BtoItem not Found</p>
+            <div>
+                <button onClick={onClickStatus}>aktuellerStatus:</button>
+                <span>{btoItemStatus}</span>
             </div>
-        }
-        <div className={"details-part2"}>
-            <span> Teilnehmen? </span>
-            <button onClick={onClickMember}>ja</button>
-            <button onClick={onClickNoMember}>nein</button>
-            <span className={"space-between"}>oder:</span>
-            <button onClick={onClickBack}>zurück</button>
         </div>
-    </div>)
+    )
 }

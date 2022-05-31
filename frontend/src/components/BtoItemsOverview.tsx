@@ -10,7 +10,8 @@ type BtoItemsOverviewProps = {
 export default function BtoItemsOverview({btoDisplayItems} : BtoItemsOverviewProps){
     return(
         <div className={"bto-item-overview"}>
-            {btoDisplayItems.map(item => <BtoItemCard btoDisplayItem={item} />)}
+            {btoDisplayItems.sort((a,b) => a.displayId.localeCompare(b.displayId))
+                .map(item => <BtoItemCard btoDisplayItem={item} />)}
         </div>
     )
 }

@@ -24,7 +24,6 @@ export default function useBtoDisplayItems() {
             })
             .catch(() => toast.error("Connection failed!! Please retry later."))
     }
-
-return {btoDisplayItems, changeBtoItem}
+    return {btoDisplayItems, changeBtoItem}
 }
 
