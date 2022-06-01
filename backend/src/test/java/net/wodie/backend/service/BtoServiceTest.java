@@ -4,6 +4,8 @@ import net.wodie.backend.model.BtoItem;
 import net.wodie.backend.repository.BtoRepository;
 import org.junit.jupiter.api.Test;
 import java.util.List;
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -27,7 +29,7 @@ class BtoServiceTest {
     }
 
     @Test
-    void updateBtoItemByID() {
+    void updateBtoItemById() {
         //GIVEN
         when(btoRepo.save(initItem1a())).thenReturn(initItem1a());
 

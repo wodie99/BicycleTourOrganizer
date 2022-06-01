@@ -21,6 +21,11 @@ public class BtoController {
         return btoService.getAllBtoItems();
     }
 
+    @GetMapping("/status/{id}")
+    public String getBtoItemStatusById(@PathVariable String id){
+        return btoService.getBtoItemStatusById(id);
+    }
+
     @SuppressWarnings("java:S4684")
     @PutMapping()
     public BtoItem updateBtoItem(@RequestBody BtoItem updatedBtoItem) {

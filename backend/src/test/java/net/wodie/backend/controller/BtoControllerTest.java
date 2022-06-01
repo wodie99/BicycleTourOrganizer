@@ -4,6 +4,7 @@ import net.wodie.backend.model.BtoItem;
 import net.wodie.backend.repository.BtoRepository;
 import net.wodie.backend.security.model.AppUser;
 import net.wodie.backend.security.repository.AppUserRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -114,7 +115,27 @@ class BtoControllerTest {
 
         //THEN
         assertNotEquals(initItem1a(), actual);
+    }
 
+    @Test
+    void getBtoItemStatusById() {
+        //GIVEN
+        btoRepository.insert(initItem1());
+
+        //WHEN
+        String actual = testClient.get()
+                .uri("/api/btoItem/status/"+initItem1().getId())
+                .headers(http -> http.setBearerAuth(jwtToken))
+                .exchange()
+                .expectStatus().is2xxSuccessful()
+                .expectBody(String.class)
+                .returnResult()
+                .getResponseBody();
+
+        //THEN
+        assertNotNull(actual);
+        String expected = initItem1().getStatus();
+        Assertions.assertEquals(expected, actual);
 
     }
 
@@ -184,5 +205,4 @@ class BtoControllerTest {
                 .returnResult()
                 .getResponseBody();
     }
-
 }
