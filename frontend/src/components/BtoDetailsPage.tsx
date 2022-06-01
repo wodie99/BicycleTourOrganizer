@@ -6,6 +6,7 @@ import "../style/BtoDetailsPage.css"
 import useBtoItemStatus from "../hooks/useBtoItemStatus";
 import SetActionOwner from "./SetActionOwner";
 import EditActionByOwner from "./EditActionByOwner";
+import ShowDummyText from "./ShowDummyText";
 
 type DetailsPageProps = {
     btoDisplayItems: BtoDisplayItem[];
@@ -80,19 +81,21 @@ export default function BtoDetailsPage({btoDisplayItems, changeBtoItem, username
                             <hr/>
                             <p>Status der Aktion: {btoItem.status}</p>
                             <p>AktionOwner: {btoItem.actionOwner}</p>
+                            <p>Teilnehmer: {btoItem.actionMembers}</p>
+                            <p>Nicht teilnehmen: {btoItem.actionNotMembers}</p>
                         </div>
                     }
-                    {btoItem.status === "NEU" ?
+                    {btoItem.status === "NEW" ?
                         <SetActionOwner btoDisplayItem={btoItem} username={username}/> : <></>
                     }
                     {btoItem.status === "PREP4VOTE" ?
-                        <SetActionOwner btoDisplayItem={btoItem} username={username}/> : <></>
+                        <ShowDummyText btoDisplayItem={btoItem} username={username}/> : <></>
                     }
                     {btoItem.status === "PREP4FINISH" ?
-                        <SetActionOwner btoDisplayItem={btoItem} username={username}/> : <></>
+                        <ShowDummyText btoDisplayItem={btoItem} username={username}/> : <></>
                     }
                     {btoItem.status === "FINISH" ?
-                        <SetActionOwner btoDisplayItem={btoItem} username={username}/> : <></>
+                        <ShowDummyText btoDisplayItem={btoItem} username={username}/> : <></>
                     }
                     {btoItem.status === "VOTE" ?
                         <div className={"details-part2"}>

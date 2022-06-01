@@ -27,6 +27,5 @@ public class BtoService {
         return  btoRepository.findById(id)
                 .orElseThrow( () -> new NoSuchElementException("BtoItem not found with id: " + id))
                 .getStatus();
-
     }
 }
