@@ -7,6 +7,7 @@ import useBtoItemStatus from "../hooks/useBtoItemStatus";
 import SetActionOwner from "./SetActionOwner";
 import EditActionByOwner from "./EditActionByOwner";
 import ShowDummyText from "./ShowDummyText";
+import Vote from "./Vote";
 
 type DetailsPageProps = {
     btoDisplayItems: BtoDisplayItem[];
@@ -33,38 +34,6 @@ export default function BtoDetailsPage({btoDisplayItems, changeBtoItem, username
         if (id) {
             getStatusById(id)
         }
-    }
-
-    const onClickMember = () => {
-        if (btoItem) {
-            if (!btoItem.actionMembers.includes(username)) {
-                btoItem.actionMembers = [...btoItem.actionMembers, username]
-            }
-            if (btoItem.actionNotMembers.includes(username)) {
-                btoItem.actionNotMembers = remove(btoItem.actionNotMembers, username)
-            }
-            changeBtoItem(btoItem)
-        }
-    }
-
-    const onClickNoMember = () => {
-        if (btoItem) {
-            if (!btoItem.actionNotMembers.includes(username)) {
-                btoItem.actionNotMembers = [...btoItem.actionNotMembers, username]
-            }
-            if (btoItem.actionMembers.includes(username)) {
-                btoItem.actionMembers = remove(btoItem.actionMembers, username)
-            }
-            changeBtoItem(btoItem)
-        }
-    }
-
-    function remove(arr: string[], item: string) {
-        var index = arr.indexOf(item);
-        return [
-            ...arr.slice(0, index),
-            ...arr.slice(index + 1)
-        ];
     }
 
     return (
@@ -98,13 +67,7 @@ export default function BtoDetailsPage({btoDisplayItems, changeBtoItem, username
                         <ShowDummyText btoDisplayItem={btoItem} username={username}/> : <></>
                     }
                     {btoItem.status === "VOTE" ?
-                        <div className={"details-part2"}>
-                            <span> Teilnehmen? </span>
-                            <button onClick={onClickMember}>ja</button>
-                            <button onClick={onClickNoMember}>nein</button>
-                            <span className={"space-between"}>oder:</span>
-                            <button onClick={onClickBack}>zurück</button>
-                        </div>
+                        <Vote btoItem={btoItem} username={username} changeBtoItem={changeBtoItem}/>
                         :
                         <div>
                             <p>AktionOwner: {btoItem.actionOwner}</p>
