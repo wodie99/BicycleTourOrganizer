@@ -1,5 +1,6 @@
 package net.wodie.backend.controller;
 
+import net.wodie.backend.dto.BtoVoteDto;
 import net.wodie.backend.model.BtoItem;
 import net.wodie.backend.service.BtoService;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +31,11 @@ public class BtoController {
     @PutMapping()
     public BtoItem updateBtoItem(@RequestBody BtoItem updatedBtoItem) {
         return btoService.updateBtoItem(updatedBtoItem);
-
     }
+    @PutMapping("/vote/{id}")
+    public BtoVoteDto updateBtoVote(@PathVariable String id, @RequestBody String username, String vote) {
+        return btoService.updateBtoVote(id, username, vote);
+    }
+
+
 }
