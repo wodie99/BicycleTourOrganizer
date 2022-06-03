@@ -1,8 +1,9 @@
 import {useContext, useEffect, useState} from "react";
 import {BtoDisplayItem} from "../model/BtoDisplayItem";
-import {getAllBtoDisplayItems, putBtoItem} from "../service/api-service";
+import {getAllBtoDisplayItems, putBtoItem, putVote} from "../service/api-service";
 import {toast} from "react-toastify";
 import {AuthContext} from "../context/AuthProvider";
+import {VoteSend} from "../model/VoteSend";
 
 export default function useBtoDisplayItems() {
     const [btoDisplayItems, setBtoDisplayitems] = useState<BtoDisplayItem[]>([]);
@@ -24,6 +25,18 @@ export default function useBtoDisplayItems() {
             })
             .catch(() => toast.error("Connection failed!! Please retry later."))
     }
-    return {btoDisplayItems, changeBtoItem}
+
+
+    const updateVote = (id:string, voteSend: VoteSend) => {
+        putVote(id,voteSend,token)
+            .then(updatedBtoItem => {
+                setBtoDisplayitems(btoDisplayItems.map(item => item.id === updatedBtoItem.id ? updatedBtoItem : item))
+                return updatedBtoItem
+            })
+            .catch(() => toast.error("Connection failed!! Please retry later."))
+    }
+
+
+    return {btoDisplayItems, changeBtoItem, updateVote}
 }
 
