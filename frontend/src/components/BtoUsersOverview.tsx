@@ -31,7 +31,6 @@ export default function BtoUsersOverview({btoDisplayItems}: BtoUsersOverviewProp
                         .map(item => <BtoUserItemCard btoUserItem={item} />)}
                     <hr/>
                     <h2>Ende</h2>
-                    <h1>Test</h1>
                 </div>
                 :
                 <div>
