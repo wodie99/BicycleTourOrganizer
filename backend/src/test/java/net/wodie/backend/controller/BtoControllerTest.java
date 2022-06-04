@@ -130,7 +130,6 @@ class BtoControllerTest {
 
         //WHEN
         String actual = testClient.get()
-//                .uri("/api/btoItem/status/"+initItem1().getId())
                 .uri("/api/btoItem/status/1")
                 .headers(http -> http.setBearerAuth(jwtToken))
                 .exchange()
