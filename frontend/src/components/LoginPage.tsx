@@ -12,7 +12,6 @@ export default function LoginPage() {
     const onSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         login({username: username, password: password})
-        // setUsername(username)
     }
 
     return (
