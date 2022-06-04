@@ -36,6 +36,15 @@ export default function useBtoDisplayItems() {
             .catch(() => toast.error("Connection failed!! Please retry later."))
     }
 
+    // const voteYes = (id:string, username:string) => {
+    //     putVoteYes(id, username, token)
+    //         .then(updatedBtoItem => {
+    //             setBtoDisplayitems(btoDisplayItems.map(item => item.id === updatedBtoItem.id ? updatedBtoItem : item))
+    //             return updatedBtoItem
+    //         })
+    //         .catch(() => toast.error("Connection failed!! Please retry later."))
+    // }
+
 
     return {btoDisplayItems, changeBtoItem, updateVote}
 }

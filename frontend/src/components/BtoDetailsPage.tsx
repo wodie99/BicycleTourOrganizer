@@ -8,14 +8,16 @@ import SetActionOwner from "./SetActionOwner";
 import EditActionByOwner from "./EditActionByOwner";
 import ShowDummyText from "./ShowDummyText";
 import Vote from "./Vote";
+import {VoteSend} from "../model/VoteSend";
 
 type DetailsPageProps = {
     btoDisplayItems: BtoDisplayItem[];
+    updateVote: (id: string, voteSend:VoteSend) => void;
     changeBtoItem: (updatedBtoItem: BtoDisplayItem) => void;
     username: string;
 }
 
-export default function BtoDetailsPage({btoDisplayItems, changeBtoItem, username}: DetailsPageProps) {
+export default function BtoDetailsPage({btoDisplayItems, updateVote, username}: DetailsPageProps) {
 
     const {id} = useParams()
     const [btoItem, setBtoItem] = useState<BtoDisplayItem>()
@@ -34,6 +36,10 @@ export default function BtoDetailsPage({btoDisplayItems, changeBtoItem, username
         if (id) {
             getStatusById(id)
         }
+    }
+
+    const onClickUsername = () => {
+
     }
 
     return (
@@ -67,7 +73,10 @@ export default function BtoDetailsPage({btoDisplayItems, changeBtoItem, username
                         <ShowDummyText btoDisplayItem={btoItem} username={username}/> : <></>
                     }
                     {btoItem.status === "VOTE" ?
-                        <Vote btoItem={btoItem} username={username} changeBtoItem={changeBtoItem}/>
+                        <div>
+                            <h1>Vote getroffen</h1>
+                            <Vote btoItem={btoItem} username={username} updateVote={updateVote}/>
+                        </div>
                         :
                         <div>
                             <p>AktionOwner: {btoItem.actionOwner}</p>
@@ -85,6 +94,10 @@ export default function BtoDetailsPage({btoDisplayItems, changeBtoItem, username
             <div>
                 <button onClick={onClickStatus}>aktuellerStatus:</button>
                 <span>{btoItemStatus}</span>
+            </div>
+            <div>
+                <button onClick={onClickUsername}>username:</button>
+                <span>{username}</span>
             </div>
         </div>
     )

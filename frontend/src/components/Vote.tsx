@@ -1,57 +1,69 @@
 import {BtoDisplayItem} from "../model/BtoDisplayItem";
 import {useNavigate} from "react-router-dom";
+import {VoteSend} from "../model/VoteSend";
+import useBtoItemStatus from "../hooks/useBtoItemStatus";
+import {toast} from "react-toastify";
 
 type VoteProps = {
     btoItem: BtoDisplayItem;
     username: string;
-    changeBtoItem: (updatedBtoItem: BtoDisplayItem) => void;
+    updateVote: (id: string, voteSend: VoteSend) => void;
 }
 
-export default function Vote({btoItem, username, changeBtoItem}: VoteProps) {
+export default function Vote({btoItem, username, updateVote}: VoteProps) {
 
     const navigate = useNavigate()
-
+    const {btoItemStatus, getStatusById} = useBtoItemStatus()
 
     const onClickBack = () => {
         navigate(`/`)
     }
 
-    const onClickMember = () => {
+    const onClickYes = () => {
         if (btoItem) {
-            if (!btoItem.actionMembers.includes(username)) {
-                btoItem.actionMembers = [...btoItem.actionMembers, username]
+            getStatusById(btoItem.id)
+            if (btoItemStatus === "VOTE") {
+                const vote = "YES"
+                if (!btoItem.actionMembers.includes(username)) {
+                    updateVote(btoItem.id, {username,vote})
+                } else {
+                    toast.info("Status ist bereits gespeichert")
+                }
+            } else {
+                toast.warning("Wahl bereits beendet!")
             }
-            if (btoItem.actionNotMembers.includes(username)) {
-                btoItem.actionNotMembers = remove(btoItem.actionNotMembers, username)
-            }
-            changeBtoItem(btoItem)
+        } else {
+            toast.error("ID wurde nicht gefunden!")
         }
     }
 
-    const onClickNoMember = () => {
+    const onClickNo = () => {
         if (btoItem) {
-            if (!btoItem.actionNotMembers.includes(username)) {
-                btoItem.actionNotMembers = [...btoItem.actionNotMembers, username]
+            getStatusById(btoItem.id)
+            if (btoItemStatus === "VOTE") {
+                const vote = "NO"
+                if (!btoItem.actionNotMembers.includes(username)) {
+                    updateVote(btoItem.id, {username,vote})
+                } else {
+                    toast.info("Status ist bereits gespeichert")
+                }
+            } else {
+                toast.warning("Wahl bereits beendet!")
             }
-            if (btoItem.actionMembers.includes(username)) {
-                btoItem.actionMembers = remove(btoItem.actionMembers, username)
-            }
-            changeBtoItem(btoItem)
+        } else {
+            toast.error("ID wurde nicht gefunden!")
         }
-    }
-
-    function remove(arr: string[], item: string) {
-        var index = arr.indexOf(item);
-        return [
-            ...arr.slice(0, index),
-            ...arr.slice(index + 1)
-        ];
     }
 
     return (<div>
+            <p>Status der Aktion: {btoItem.status}</p>
+            <p>AktionOwner: {btoItem.actionOwner}</p>
+            <p>Teilnehmer: {btoItem.actionMembers}</p>
+            <p>Nicht teilnehmen: {btoItem.actionNotMembers}</p>
+
             <span> Teilnehmen? </span>
-            <button onClick={onClickMember}>ja</button>
-            <button onClick={onClickNoMember}>nein</button>
+            <button onClick={onClickYes}>ja</button>
+            <button onClick={onClickNo}>nein</button>
             <span className={"space-between"}>oder:</span>
             <button onClick={onClickBack}>zurück</button>
         </div>
