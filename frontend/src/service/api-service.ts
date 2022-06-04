@@ -40,20 +40,3 @@ export const putVote: (id: string, voteSend: VoteSend, token?: string) =>
         : {})
         .then(response => response.data)
 }
-
-// export const putVote: (id: string, voteSend: VoteSend, token?: string) =>
-//     Promise<BtoDisplayItem> = (id, voteSend, token) => {
-//     return axios.put(`/api/btoItem/vote/${id}`,voteSend, token
-//         ? {headers: {"Authorization": token}}
-//         : {})
-//         .then(response => response.data)
-// }
-//
-// export const putVoteYes: (id: string, username: string, token?: string) =>
-//     Promise<BtoDisplayItem> = (id, username, token) => {
-//     return axios.put(`/api/btoItem/vote/${id}`,username, token
-//         ? {headers: {"Authorization": token}}
-//         : {})
-//         .then(response => response.data)
-// }
-

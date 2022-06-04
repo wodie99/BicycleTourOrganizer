@@ -9,6 +9,7 @@ import EditActionByOwner from "./EditActionByOwner";
 import ShowDummyText from "./ShowDummyText";
 import Vote from "./Vote";
 import {VoteSend} from "../model/VoteSend";
+import {toast} from "react-toastify";
 
 type DetailsPageProps = {
     btoDisplayItems: BtoDisplayItem[];
@@ -36,10 +37,6 @@ export default function BtoDetailsPage({btoDisplayItems, updateVote, username}: 
         if (id) {
             getStatusById(id)
         }
-    }
-
-    const onClickUsername = () => {
-
     }
 
     return (
@@ -89,15 +86,12 @@ export default function BtoDetailsPage({btoDisplayItems, updateVote, username}: 
                 :
                 <div className={"details-page-error"}>
                     <p>BtoItem not Found</p>
+                    <>{() => toast.error("BtoItem not found")}</>
                 </div>
             }
             <div>
                 <button onClick={onClickStatus}>aktuellerStatus:</button>
                 <span>{btoItemStatus}</span>
-            </div>
-            <div>
-                <button onClick={onClickUsername}>username:</button>
-                <span>{username}</span>
             </div>
         </div>
     )
