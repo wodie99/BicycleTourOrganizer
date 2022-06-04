@@ -26,6 +26,12 @@ public class BtoController {
         return btoService.getBtoItemStatusById(id);
     }
 
+    @PutMapping("/test/{id}")
+    public BtoItem easyPut(@PathVariable String id, @RequestBody BtoVote btoVote) {
+        return btoService.easyPut(id, btoVote);
+    }
+
+
     @SuppressWarnings("java:S4684")
     @PutMapping()
     public BtoItem updateBtoItem(@RequestBody BtoItem updatedBtoItem) {
