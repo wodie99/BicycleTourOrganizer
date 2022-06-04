@@ -12,7 +12,7 @@ export default function useUsername() {
             getUsername(token)
                 .then(name => {
                     setUsername(name)
-                    toast.info("Username wurde gesetzt zu" + {username})
+                    toast.info("Username wurde gesetzt zu " + {username})
                     return name
                 })
         }
