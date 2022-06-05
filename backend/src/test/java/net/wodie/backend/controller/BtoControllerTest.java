@@ -7,16 +7,13 @@ import net.wodie.backend.security.model.AppUser;
 import net.wodie.backend.security.repository.AppUserRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -144,7 +141,6 @@ class BtoControllerTest {
         Assertions.assertEquals(expected, actual);
     }
 
-    @Disabled ("Seems to be a problem with embedded MongoDB")
     @Test
     void updateBtoVoteTest() {
         //GIVEN
@@ -163,30 +159,8 @@ class BtoControllerTest {
 
         //THEN
         assertNotNull(actual);
-        assertTrue(actual.getActionNotMembers().contains("U15"));
+        assertTrue(actual.getActionMembers().contains("U15"));
         assertFalse(actual.getActionNotMembers().contains("U15"));
-    }
-
-    @Test
-    void easyPutTest() {
-        //GIVEN
-        btoRepository.insert(initItem1());
-
-        //WHEN
-        BtoItem actual = testClient.put()
-                .uri("/api/btoItem/test/"+initItem1().getId())
-                .headers(http -> http.setBearerAuth(jwtToken))
-                .bodyValue(btoVote1())
-                .exchange()
-                .expectStatus().is2xxSuccessful()
-                .expectBody(BtoItem.class)
-                .returnResult()
-                .getResponseBody();
-
-        //THEN
-        assertNotNull(actual);
-        assertEquals(btoVote1().getUsername(), actual.getTitle1());
-        assertEquals(btoVote1().getVote(), actual.getTitle2());
     }
 
     private BtoVote btoVote1() {
@@ -199,12 +173,12 @@ class BtoControllerTest {
     private BtoItem initItem1() {
         return BtoItem.builder()
                 .id("1")
-                .displayId("t01c1o01")
+                .displayId("t01e01")
                 .category("action")
                 .title1("Actionpoint 01")
                 .title2("First Day")
                 .description("<p>Testeintrag for No1</p>")
-                .status("open")
+                .status("VOTE")
                 .actionOwner("U11")
                 .actionMembers(List.of("U12", "U13"))
                 .actionNotMembers(List.of("U15"))
@@ -214,12 +188,12 @@ class BtoControllerTest {
     private BtoItem initItem1a() {
         return BtoItem.builder()
                 .id("1")
-                .displayId("t01c1o01")
+                .displayId("t01e01")
                 .category("action")
                 .title1("Actionpoint 01")
                 .title2("First Day")
                 .description("<p>Testeintrag for No1</p>")
-                .status("finished")
+                .status("FINISHED")
                 .actionOwner("U11")
                 .actionMembers(List.of("U12", "U13"))
                 .actionNotMembers(List.of("U15"))
@@ -229,12 +203,12 @@ class BtoControllerTest {
     private BtoItem initItem2() {
         return BtoItem.builder()
                 .id("2")
-                .displayId("t01c1o02")
+                .displayId("t01e02")
                 .category("action")
                 .title1("Actionpoint 02")
                 .title2("First Day")
                 .description("<p>Testeintrag for No2</p>")
-                .status("open")
+                .status("VOTE")
                 .actionOwner("U12")
                 .actionMembers(List.of("U11", "U13"))
                 .actionNotMembers(List.of("U15"))

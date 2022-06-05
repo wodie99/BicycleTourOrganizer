@@ -1,19 +1,19 @@
 import {BtoDisplayItem} from "../model/BtoDisplayItem";
 import {useNavigate} from "react-router-dom";
 import {VoteSend} from "../model/VoteSend";
-import useBtoItemStatus from "../hooks/useBtoItemStatus";
 import {toast} from "react-toastify";
 
 type VoteProps = {
     btoItem: BtoDisplayItem;
     username: string;
     updateVote: (id: string, voteSend: VoteSend) => void;
+    btoItemStatus: string;
+    getStatusById: (id: string) => void;
 }
 
-export default function Vote({btoItem, username, updateVote}: VoteProps) {
+export default function Vote({btoItem, username, updateVote, btoItemStatus, getStatusById}: VoteProps) {
 
     const navigate = useNavigate()
-    const {btoItemStatus, getStatusById} = useBtoItemStatus()
 
     const onClickBack = () => {
         navigate(`/`)
@@ -22,15 +22,21 @@ export default function Vote({btoItem, username, updateVote}: VoteProps) {
     const onClickYes = () => {
         if (btoItem) {
             getStatusById(btoItem.id)
-            if (btoItemStatus === "VOTE") {
-                const vote = "YES"
-                if (!btoItem.actionMembers.includes(username)) {
-                    updateVote(btoItem.id, {username,vote})
+            if (btoItemStatus !== "") {
+                getStatusById(btoItem.id)
+                if (btoItemStatus === "VOTE") {
+                    const vote = "YES"
+                    if (!btoItem.actionMembers.includes(username)) {
+                        updateVote(btoItem.id, {username, vote})
+                        toast.info("Status wird gespeichert")
+                    } else {
+                        toast.info("Status ist bereits gespeichert")
+                    }
                 } else {
-                    toast.info("Status ist bereits gespeichert")
+                    toast.warning("Wahl bereits beendet!")
                 }
             } else {
-                toast.warning("Wahl bereits beendet!")
+                toast.warning("Timeout - bitte nochmals drücken!")
             }
         } else {
             toast.error("ID wurde nicht gefunden!")
@@ -40,15 +46,21 @@ export default function Vote({btoItem, username, updateVote}: VoteProps) {
     const onClickNo = () => {
         if (btoItem) {
             getStatusById(btoItem.id)
-            if (btoItemStatus === "VOTE") {
-                const vote = "NO"
-                if (!btoItem.actionNotMembers.includes(username)) {
-                    updateVote(btoItem.id, {username,vote})
+            if (btoItemStatus !== "") {
+                getStatusById(btoItem.id)
+                if (btoItemStatus === "VOTE") {
+                    const vote = "NO"
+                    if (!btoItem.actionNotMembers.includes(username)) {
+                        updateVote(btoItem.id, {username, vote})
+                        toast.info("Status wird gespeichert")
+                    } else {
+                        toast.info("Status ist bereits gespeichert")
+                    }
                 } else {
-                    toast.info("Status ist bereits gespeichert")
+                    toast.warning("Wahl bereits beendet!")
                 }
             } else {
-                toast.warning("Wahl bereits beendet!")
+                toast.warning("Timeout - bitte nochmals drücken!")
             }
         } else {
             toast.error("ID wurde nicht gefunden!")
@@ -60,7 +72,6 @@ export default function Vote({btoItem, username, updateVote}: VoteProps) {
             <p>AktionOwner: {btoItem.actionOwner}</p>
             <p>Teilnehmer: {btoItem.actionMembers}</p>
             <p>Nicht teilnehmen: {btoItem.actionNotMembers}</p>
-
             <span> Teilnehmen? </span>
             <button onClick={onClickYes}>ja</button>
             <button onClick={onClickNo}>nein</button>

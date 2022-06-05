@@ -61,16 +61,5 @@ public class BtoService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Wrong status");
         }
     }
-
-    public BtoItem easyPut(String id, BtoVote btoVote) {
-        Optional<BtoItem> btoItem = btoRepository.findById(id);
-        if (btoItem.isPresent()) {
-            BtoItem btoTemp = btoItem.get();
-            btoTemp.setTitle1(btoVote.getUsername());
-            btoTemp.setTitle2(btoVote.getVote());
-            return btoRepository.save(btoTemp);
-        }
-        throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Wrong status");
-    }
 }
 

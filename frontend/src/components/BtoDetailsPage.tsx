@@ -72,7 +72,13 @@ export default function BtoDetailsPage({btoDisplayItems, updateVote, username}: 
                     {btoItem.status === "VOTE" ?
                         <div>
                             <h1>Vote getroffen</h1>
-                            <Vote btoItem={btoItem} username={username} updateVote={updateVote}/>
+                            <Vote btoItem={btoItem}
+                                  username={username}
+                                  updateVote={updateVote}
+                                  btoItemStatus={btoItemStatus}
+                                  getStatusById={getStatusById}
+
+                            />
                         </div>
                         :
                         <div>
