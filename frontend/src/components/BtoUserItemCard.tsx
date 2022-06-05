@@ -14,6 +14,7 @@ export default function BtoUserItemCard({btoUserItem}: BtoUserItemsCardProps) {
             <span><b>Teilnehmer: {btoUserItem.actionMembers} </b></span>
             <span><b> Absagen: {btoUserItem.actionNotMembers}</b></span>
             <Markup content = {btoUserItem.description} />
+            <h1>Test aus BtoUserItemCard</h1>
         </div>
     )
 }

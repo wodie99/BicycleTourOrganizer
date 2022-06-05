@@ -2,7 +2,6 @@ import {BtoDisplayItem} from "../model/BtoDisplayItem";
 import BtoItemCard from "./BtoItemCard";
 import "../style/BtoItemsOverview.css"
 
-
 type BtoItemsOverviewProps = {
     btoDisplayItems: BtoDisplayItem[]
 }
@@ -15,3 +14,4 @@ export default function BtoItemsOverview({btoDisplayItems} : BtoItemsOverviewPro
         </div>
     )
 }
+

@@ -8,14 +8,17 @@ import SetActionOwner from "./SetActionOwner";
 import EditActionByOwner from "./EditActionByOwner";
 import ShowDummyText from "./ShowDummyText";
 import Vote from "./Vote";
+import {VoteSend} from "../model/VoteSend";
+import {toast} from "react-toastify";
 
 type DetailsPageProps = {
     btoDisplayItems: BtoDisplayItem[];
+    updateVote: (id: string, voteSend:VoteSend) => void;
     changeBtoItem: (updatedBtoItem: BtoDisplayItem) => void;
     username: string;
 }
 
-export default function BtoDetailsPage({btoDisplayItems, changeBtoItem, username}: DetailsPageProps) {
+export default function BtoDetailsPage({btoDisplayItems, updateVote, username}: DetailsPageProps) {
 
     const {id} = useParams()
     const [btoItem, setBtoItem] = useState<BtoDisplayItem>()
@@ -67,7 +70,16 @@ export default function BtoDetailsPage({btoDisplayItems, changeBtoItem, username
                         <ShowDummyText btoDisplayItem={btoItem} username={username}/> : <></>
                     }
                     {btoItem.status === "VOTE" ?
-                        <Vote btoItem={btoItem} username={username} changeBtoItem={changeBtoItem}/>
+                        <div>
+                            <h1>Vote getroffen</h1>
+                            <Vote btoItem={btoItem}
+                                  username={username}
+                                  updateVote={updateVote}
+                                  btoItemStatus={btoItemStatus}
+                                  getStatusById={getStatusById}
+
+                            />
+                        </div>
                         :
                         <div>
                             <p>AktionOwner: {btoItem.actionOwner}</p>
@@ -80,6 +92,7 @@ export default function BtoDetailsPage({btoDisplayItems, changeBtoItem, username
                 :
                 <div className={"details-page-error"}>
                     <p>BtoItem not Found</p>
+                    <>{() => toast.error("BtoItem not found")}</>
                 </div>
             }
             <div>

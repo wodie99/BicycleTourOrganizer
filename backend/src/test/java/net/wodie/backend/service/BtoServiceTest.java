@@ -4,7 +4,6 @@ import net.wodie.backend.model.BtoItem;
 import net.wodie.backend.repository.BtoRepository;
 import org.junit.jupiter.api.Test;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -49,7 +48,7 @@ class BtoServiceTest {
                 .title1("Actionpoint 03")
                 .title2("Second Day")
                 .description("<p>Testeintrag for No3</p>")
-                .status("open")
+                .status("VOTE")
                 .actionOwner("U11")
                 .actionMembers(List.of("U12","U13"))
                 .actionNotMembers(List.of("U15"))
@@ -64,7 +63,7 @@ class BtoServiceTest {
                 .title1("Actionpoint 03")
                 .title2("Second Day")
                 .description("<p>Testeintrag for No3</p>")
-                .status("finished")
+                .status("FINISHED")
                 .actionOwner("U11")
                 .actionMembers(List.of("U12","U13"))
                 .actionNotMembers(List.of("U15"))
