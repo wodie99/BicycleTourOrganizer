@@ -2,6 +2,7 @@ import {BtoDisplayItem} from "../model/BtoDisplayItem";
 import {useNavigate} from "react-router-dom";
 import {VoteSend} from "../model/VoteSend";
 import {toast} from "react-toastify";
+import {useEffect} from "react";
 
 type VoteProps = {
     btoItem: BtoDisplayItem;
@@ -18,6 +19,10 @@ export default function Vote({btoItem, username, updateVote, btoItemStatus, getS
     const onClickBack = () => {
         navigate(`/`)
     }
+
+    useEffect(() => {
+        getStatusById(btoItem.id)
+    }, [])
 
     const onClickYes = () => {
         if (btoItem) {
