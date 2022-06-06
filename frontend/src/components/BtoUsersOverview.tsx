@@ -32,7 +32,7 @@ export default function BtoUsersOverview({btoDisplayItems}: BtoUsersOverviewProp
                     <hr/>
                     <h1>Aktionen an denen Du nicht teilnimmst:</h1>
                     {btoDisplayItems.filter((item) => (
-                        item.category === "action"
+                        item.category
                         && item.category === "action"
                         && item.actionNotMembers
                         && item.actionNotMembers.includes(username)))
