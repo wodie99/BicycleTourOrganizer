@@ -2,6 +2,7 @@ import {BtoDisplayItem} from "../model/BtoDisplayItem";
 import {useNavigate} from "react-router-dom";
 import {VoteSend} from "../model/VoteSend";
 import {toast} from "react-toastify";
+import {useEffect} from "react";
 
 type VoteProps = {
     btoItem: BtoDisplayItem;
@@ -16,8 +17,12 @@ export default function Vote({btoItem, username, updateVote, btoItemStatus, getS
     const navigate = useNavigate()
 
     const onClickBack = () => {
-        navigate(`/`)
+        navigate(-1)
     }
+
+    useEffect(() => {
+        getStatusById(btoItem.id)
+    },[btoItem.id, getStatusById] )
 
     const onClickYes = () => {
         if (btoItem) {
@@ -26,9 +31,9 @@ export default function Vote({btoItem, username, updateVote, btoItemStatus, getS
                 getStatusById(btoItem.id)
                 if (btoItemStatus === "VOTE") {
                     const vote = "YES"
-                    if (!btoItem.actionMembers.includes(username)) {
+                    if (!btoItem.actionMembers || !btoItem.actionMembers.includes(username)) {
                         updateVote(btoItem.id, {username, vote})
-                        toast.info("Status wird gespeichert")
+                        toast.info("Neuer Status wird gespeichert")
                     } else {
                         toast.info("Status ist bereits gespeichert")
                     }
@@ -50,7 +55,7 @@ export default function Vote({btoItem, username, updateVote, btoItemStatus, getS
                 getStatusById(btoItem.id)
                 if (btoItemStatus === "VOTE") {
                     const vote = "NO"
-                    if (!btoItem.actionNotMembers.includes(username)) {
+                    if (!btoItem.actionNotMembers || !btoItem.actionNotMembers.includes(username)) {
                         updateVote(btoItem.id, {username, vote})
                         toast.info("Status wird gespeichert")
                     } else {
@@ -68,6 +73,7 @@ export default function Vote({btoItem, username, updateVote, btoItemStatus, getS
     }
 
     return (<div>
+            <h1>Wahl zur Teilnahme</h1>
             <p>Status der Aktion: {btoItem.status}</p>
             <p>AktionOwner: {btoItem.actionOwner}</p>
             <p>Teilnehmer: {btoItem.actionMembers}</p>
@@ -75,8 +81,9 @@ export default function Vote({btoItem, username, updateVote, btoItemStatus, getS
             <span> Teilnehmen? </span>
             <button onClick={onClickYes}>ja</button>
             <button onClick={onClickNo}>nein</button>
-            <span className={"space-between"}>oder:</span>
-            <button onClick={onClickBack}>zurück</button>
+            <p>
+                <button onClick={onClickBack}>zurück</button>
+            </p>
         </div>
     )
 }

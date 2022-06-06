@@ -27,8 +27,8 @@ function App() {
                     <Route path={"/logout"} element={<LogoutPage setUsername={setUsername}/>}/>
                     <Route path={'/btoItem/:id'} element={<BtoDetailsPage
                         btoDisplayItems={btoDisplayItems}
-                        updateVote={updateVote}
                         changeBtoItem={changeBtoItem}
+                        updateVote={updateVote}
                         username={username}/>}/>
                 </Route>
                 <Route path={'/login'} element={<LoginPage />}/>

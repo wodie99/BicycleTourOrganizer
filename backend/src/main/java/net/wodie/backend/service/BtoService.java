@@ -6,9 +6,7 @@ import net.wodie.backend.repository.BtoRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class BtoService {
@@ -24,6 +22,9 @@ public class BtoService {
     }
 
     public BtoItem updateBtoItem(BtoItem updatedBtoItem) {
+        if (updatedBtoItem.getStatus().equals("PREP4VOTE")) {
+            checkVoteFields(updatedBtoItem);
+        }
         return btoRepository.save(updatedBtoItem);
     }
 
@@ -31,6 +32,15 @@ public class BtoService {
         return btoRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException(BTO_ITEM_NOT_FOUND + id))
                 .getStatus();
+    }
+
+    private void checkVoteFields(BtoItem btoItem) {
+        if (btoItem.getActionMembers() == null) {
+            btoItem.setActionMembers(Collections.emptyList());
+        }
+        if (btoItem.getActionNotMembers() == null) {
+            btoItem.setActionNotMembers(Collections.emptyList());
+        }
     }
 
     @SuppressWarnings("java:S3776")
@@ -42,9 +52,8 @@ public class BtoService {
             BtoItem btoTemp = btoItem.get();
             if (btoTemp.getStatus().equals("VOTE")) {
                 if (btoVote.getVote().equals("YES")) {
-                    if (!btoTemp.getActionMembers().contains(btoVote.getUsername())) {
+                    if (!btoTemp.getActionMembers().contains(btoVote.getUsername()))
                         btoTemp.getActionMembers().add(btoVote.getUsername());
-                    }
                     if (btoTemp.getActionNotMembers().contains(btoVote.getUsername())) {
                         btoTemp.getActionNotMembers().remove(btoVote.getUsername());
                     }
@@ -58,7 +67,7 @@ public class BtoService {
                 }
                 return btoRepository.save(btoTemp);
             }
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Wrong status");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Wrong status");
         }
     }
 }
