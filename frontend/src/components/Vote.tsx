@@ -22,7 +22,7 @@ export default function Vote({btoItem, username, updateVote, btoItemStatus, getS
 
     useEffect(() => {
         getStatusById(btoItem.id)
-    }, [])
+    }, [btoItem.id])
 
     const onClickYes = () => {
         if (btoItem) {
@@ -31,9 +31,9 @@ export default function Vote({btoItem, username, updateVote, btoItemStatus, getS
                 getStatusById(btoItem.id)
                 if (btoItemStatus === "VOTE") {
                     const vote = "YES"
-                    if (!btoItem.actionMembers.includes(username)) {
+                    if (!btoItem.actionMembers || !btoItem.actionMembers.includes(username)) {
                         updateVote(btoItem.id, {username, vote})
-                        toast.info("Status wird gespeichert")
+                        toast.info("Neuer Status wird gespeichert")
                     } else {
                         toast.info("Status ist bereits gespeichert")
                     }
@@ -55,7 +55,7 @@ export default function Vote({btoItem, username, updateVote, btoItemStatus, getS
                 getStatusById(btoItem.id)
                 if (btoItemStatus === "VOTE") {
                     const vote = "NO"
-                    if (!btoItem.actionNotMembers.includes(username)) {
+                    if (!btoItem.actionNotMembers || !btoItem.actionNotMembers.includes(username)) {
                         updateVote(btoItem.id, {username, vote})
                         toast.info("Status wird gespeichert")
                     } else {

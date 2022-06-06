@@ -13,12 +13,12 @@ import {toast} from "react-toastify";
 
 type DetailsPageProps = {
     btoDisplayItems: BtoDisplayItem[];
-    updateVote: (id: string, voteSend:VoteSend) => void;
     changeBtoItem: (updatedBtoItem: BtoDisplayItem) => void;
+    updateVote: (id: string, voteSend: VoteSend) => void;
     username: string;
 }
 
-export default function BtoDetailsPage({btoDisplayItems, updateVote, username}: DetailsPageProps) {
+export default function BtoDetailsPage({btoDisplayItems, changeBtoItem, updateVote, username}: DetailsPageProps) {
 
     const {id} = useParams()
     const [btoItem, setBtoItem] = useState<BtoDisplayItem>()
@@ -44,7 +44,10 @@ export default function BtoDetailsPage({btoDisplayItems, updateVote, username}: 
             {btoItem ?
                 <div className={"details-page"}>
                     {btoItem.actionOwner === username ?
-                        <EditActionByOwner btoDisplayItem={btoItem} username={username}/>
+                        <EditActionByOwner
+                            btoDisplayItem={btoItem}
+                            changeBtoItem={changeBtoItem}
+                            username={username}/>
                         :
                         <div>
                             <h1>{btoItem.title1}</h1>
@@ -58,7 +61,13 @@ export default function BtoDetailsPage({btoDisplayItems, updateVote, username}: 
                         </div>
                     }
                     {btoItem.status === "NEW" ?
-                        <SetActionOwner btoDisplayItem={btoItem} username={username}/> : <></>
+                        <SetActionOwner
+                            btoItem={btoItem}
+                            username={username}
+                            changeBtoItem={changeBtoItem}
+                            btoItemStatus={btoItemStatus}
+                            getStatusById={getStatusById}/>
+                        : <></>
                     }
                     {btoItem.status === "PREP4VOTE" ?
                         <ShowDummyText btoDisplayItem={btoItem} username={username}/> : <></>
@@ -77,7 +86,6 @@ export default function BtoDetailsPage({btoDisplayItems, updateVote, username}: 
                                   updateVote={updateVote}
                                   btoItemStatus={btoItemStatus}
                                   getStatusById={getStatusById}
-
                             />
                         </div>
                         :
