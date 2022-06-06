@@ -22,7 +22,7 @@ export default function SetActionOwner({
 
     useEffect(() => {
         getStatusById(btoItem.id)
-    }, [btoItem.id])
+    }, )
 
     const onClickYes = () => {
         if (btoItem) {

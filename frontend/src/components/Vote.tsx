@@ -22,7 +22,7 @@ export default function Vote({btoItem, username, updateVote, btoItemStatus, getS
 
     useEffect(() => {
         getStatusById(btoItem.id)
-    }, [btoItem.id])
+    }, )
 
     const onClickYes = () => {
         if (btoItem) {
