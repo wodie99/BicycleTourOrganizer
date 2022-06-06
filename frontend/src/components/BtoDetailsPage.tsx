@@ -80,7 +80,6 @@ export default function BtoDetailsPage({btoDisplayItems, changeBtoItem, updateVo
                     }
                     {btoItem.status === "VOTE" ?
                         <div>
-                            <h1>Vote getroffen</h1>
                             <Vote btoItem={btoItem}
                                   username={username}
                                   updateVote={updateVote}
@@ -92,8 +91,9 @@ export default function BtoDetailsPage({btoDisplayItems, changeBtoItem, updateVo
                         <div>
                             <p>AktionOwner: {btoItem.actionOwner}</p>
                             <p>Im Momente keine Wahl da Status: {btoItem.status} </p>
-                            <span className={"space-between"}>oder:</span>
-                            <button onClick={onClickBack}>zurück</button>
+                            <p>
+                                <button onClick={onClickBack}>zurück</button>
+                            </p>
                         </div>
                     }
                 </div>

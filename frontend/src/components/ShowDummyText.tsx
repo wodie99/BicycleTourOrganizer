@@ -9,7 +9,7 @@ export default function ShowDummyText({btoDisplayItem, username}: SetActionOwner
 
     return (
         <div>
-            <p>Hier ist die Komponente ShowDummyText</p>
+            <h1>Infoansicht nach der Wahl</h1>
             <p>username: {username}, status: {btoDisplayItem.status}</p>
         </div>
     )

@@ -14,6 +14,7 @@ export default function EditActionByOwner({btoDisplayItem, changeBtoItem, userna
     const [title1, setTitle1] = useState(btoDisplayItem.title1)
     const [title2, setTitle2] = useState(btoDisplayItem.title2)
     const [status, setStatus] = useState(btoDisplayItem.status)
+    const [actionOwner, setActionOwner] = useState(btoDisplayItem.actionOwner)
     const [description, setDescription] = useState(btoDisplayItem.description)
 
 
@@ -23,24 +24,22 @@ export default function EditActionByOwner({btoDisplayItem, changeBtoItem, userna
             toast.error("Title1 is required");
             return
         }
-        if (!status) {
-            toast.error("Status is required");
-            return
+        if (status === "NEW") {
+            setActionOwner("")
         }
-
         const updatedItem = {
             title1: title1,
             title2: title2,
             description: description,
-            status: status
+            status: status,
+            actionOwner: actionOwner
         }
-
         changeBtoItem({...btoDisplayItem, ...updatedItem})
     }
     return (
         <div>
             <h1>Editpage für ActionOwner</h1>
-            <p>username: {username}, status: {btoDisplayItem.status}</p>
+            <p>username: {username}</p>
             <div>
                 <form onSubmit={onUpdate} className={"input-elements"}>
                     <label>Die Felder Überschrift_1, Überschrift_2 und Beschreibung_1 sind nur im Status 'Vorbereitung zur Wahl' editierbar</label>
@@ -62,13 +61,14 @@ export default function EditActionByOwner({btoDisplayItem, changeBtoItem, userna
                         name="fruit"
                     >
                         <option selected value="{status}">{status}</option>
+                        <option value="NEW">Zurücksetzen auf Auswahl ActionOwner</option>
                         <option value="PREP4VOTE">Vorbereitungen zur Wahl</option>
                         <option value="VOTE">Wahl</option>
                         <option value="PREP4FINISH">Bearbeitung nach Wahl</option>
                         <option value="FINISH">Beendet</option>
                     </select>
                     <p>.</p>
-                    <input type={"submit"} value={"Add item"}/>
+                    <input type={"submit"} value={"Einträge übernehmen"}/>
                 </form>
             </div>
         </div>

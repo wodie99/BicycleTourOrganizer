@@ -11,7 +11,13 @@ type SetActionOwnerProps = {
     getStatusById: (id: string) => void;
 }
 
-export default function SetActionOwner({btoItem, username, changeBtoItem, btoItemStatus, getStatusById}: SetActionOwnerProps) {
+export default function SetActionOwner({
+                                           btoItem,
+                                           username,
+                                           changeBtoItem,
+                                           btoItemStatus,
+                                           getStatusById
+                                       }: SetActionOwnerProps) {
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -54,8 +60,9 @@ export default function SetActionOwner({btoItem, username, changeBtoItem, btoIte
             <label>Möchten Sie gerne ActionOwner werden?</label>
             <button onClick={onClickYes}>ja</button>
             <button onClick={onClickNo}>nein</button>
-            <span className={"space-between"}>oder:</span>
-            <button onClick={onClickBack}>zurück</button>
+            <p>
+                <button onClick={onClickBack}>zurück</button>
+            </p>
         </div>
     )
 }
