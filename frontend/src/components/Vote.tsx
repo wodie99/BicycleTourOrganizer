@@ -17,7 +17,7 @@ export default function Vote({btoItem, username, updateVote, btoItemStatus, getS
     const navigate = useNavigate()
 
     const onClickBack = () => {
-        navigate(`/`)
+        navigate(-1)
     }
 
     useEffect(() => {
