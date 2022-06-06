@@ -21,7 +21,8 @@ Auf der benutzerspezifischen Seite, werden nochmals alle Aktionen des Benutzers 
 Momentan realisiert:
 Die Daten für die App sind in der MongoDB gespeichert. Angezeigt wird ein Header mit einer einfachen Navigationsleiste. 
 Von hier aus kann auf die Übersichtsseite, die userspezifische Seite und die Detailsspage für Aktionen gewechselt werden.
-Als erste Eingabe aus der App kann die Wahl über die Teilnahme an Aktionen für den User aus der Detailspage heraus erfolgen.
-Als Letztes wurde die Möglichkeit eingerichtet, dass sich verschiedene User an der App anmelden können. Als Sicherheitsmechanismus wird Spring Security mit JWT eingesetzt.
+Die Bearbeitung der Aktionen erfolgt über die Detailspage. Hier wird je nach Status und Benutzer die momentan mögliche Art der Bearbeitung angezeigt.
+Um die Benutzung verschiedener Benutzer zu ermöglichen muß sich der Benutzer in der App anmelden. Hierbei wird als Sicherheitsmechanismus Spring Security mit JWT eingesetzt.
+Zum Wechsel des Benutzers kann die Logout-Funktion genutzt werden
 
 Der momentane Stand ist zu sehen: [Link zu Heroku] (https://projekt-bto.herokuapp.com/)
