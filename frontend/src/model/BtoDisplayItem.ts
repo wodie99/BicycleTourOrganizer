@@ -5,6 +5,7 @@ export type BtoDisplayItem =  {
     title1: string;
     title2: string;
     description: string;
+    description2: string;
     status:string;
     actionOwner: string;
     actionMembers: string[];
