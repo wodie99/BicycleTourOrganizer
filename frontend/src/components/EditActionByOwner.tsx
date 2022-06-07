@@ -50,7 +50,6 @@ export default function EditActionByOwner({btoDisplayItem, changeBtoItem, userna
                     <select
                         value={status}
                         onChange={event => setStatus(event.target.value)}
-                        name="fruit"
                     >
                         <option selected value="{status}">{status}</option>
                         <option value="NEW">Zurücksetzen auf Auswahl ActionOwner</option>
