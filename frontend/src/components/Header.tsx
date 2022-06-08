@@ -11,7 +11,7 @@ export default function Header() {
         <div className={"header-content"}>
             <div className={"row1"}>
 
-                <span className={"header-title"}><b>bicycle tour organizer</b></span>
+                <span className={"header-title"}><img id="rechts" src="/bto_transpa_V2.png" alt="bto-logo for header" height={50}/></span>
             </div>
             {token ?
                 <div className={"row2"}>
