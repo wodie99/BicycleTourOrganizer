@@ -10,6 +10,7 @@ import ShowDummyText from "./ShowDummyText";
 import Vote from "./Vote";
 import {VoteSend} from "../model/VoteSend";
 import {toast} from "react-toastify";
+import EditActionByOwnerP4V from "./EditActionByOwnerP4V";
 
 type DetailsPageProps = {
     btoDisplayItems: BtoDisplayItem[];
@@ -43,16 +44,25 @@ export default function BtoDetailsPage({btoDisplayItems, changeBtoItem, updateVo
         <div>
             {btoItem ?
                 <div className={"details-page"}>
-                    {btoItem.actionOwner === username ?
-                        <EditActionByOwner
-                            btoDisplayItem={btoItem}
-                            changeBtoItem={changeBtoItem}
-                            username={username}/>
+                    {btoItem.actionOwner === username ? (
+                            btoItem.status === "PREP4VOTE" ?
+                                <EditActionByOwnerP4V
+                                    btoDisplayItem={btoItem}
+                                    changeBtoItem={changeBtoItem}
+                                    username={username}/>
+                                :
+                                <EditActionByOwner
+                                    btoDisplayItem={btoItem}
+                                    changeBtoItem={changeBtoItem}
+                                    username={username}/>
+                        )
                         :
                         <div>
                             <h1>{btoItem.title1}</h1>
                             <h2>{btoItem.title2}</h2>
                             <Markup content={btoItem.description}/>
+                            <hr/>
+                            <Markup content={btoItem.description2}/>
                             <hr/>
                             <p>Status der Aktion: {btoItem.status}</p>
                             <p>AktionOwner: {btoItem.actionOwner}</p>
