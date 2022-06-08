@@ -15,9 +15,8 @@ export default function BtoItemCard({btoDisplayItem}: BtoItemCardProps) {
                 <div className={"bto-item-action-card"}>
                     <div className={"action-title1"}>Aktion: {btoDisplayItem.title1}</div>
                     <div className={"action-title2"}> {btoDisplayItem.title2}</div>
-                    <p className={"action-status"}>Status: {btoDisplayItem.status}
-                        <button onClick={() => navigate(`btoItem/${btoDisplayItem.id}`)}>Details</button>
-                    </p>
+                    <p className={"action-status"}>Status: {btoDisplayItem.status} </p>
+                    <button onClick={() => navigate(`btoItem/${btoDisplayItem.id}`)}>Details</button>
                 </div>
                 :
                 <div className={"bto-item-card"}>
