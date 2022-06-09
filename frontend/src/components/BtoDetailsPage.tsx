@@ -53,8 +53,7 @@ export default function BtoDetailsPage({btoDisplayItems, changeBtoItem, updateVo
                                 :
                                 <EditActionByOwner
                                     btoDisplayItem={btoItem}
-                                    changeBtoItem={changeBtoItem}
-                                    username={username}/>
+                                    changeBtoItem={changeBtoItem}/>
                         )
                         :
                         <div>

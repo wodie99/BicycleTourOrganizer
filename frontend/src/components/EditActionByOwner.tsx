@@ -7,7 +7,6 @@ import {toast} from "react-toastify";
 type SetActionOwnerProps = {
     btoDisplayItem: BtoDisplayItem;
     changeBtoItem: (updatedBtoItem: BtoDisplayItem) => void;
-    username: string;
 }
 
 export default function EditActionByOwner({btoDisplayItem, changeBtoItem}: SetActionOwnerProps) {
