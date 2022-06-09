@@ -22,6 +22,8 @@ export default function BtoItemCard({btoDisplayItem}: BtoItemCardProps) {
                 <div className={"bto-item-card"}>
                     <h1>{btoDisplayItem.title1}</h1>
                     <h2>{btoDisplayItem.title2}</h2>
+                    {/*<img src={btoDisplayItem.pictureLink} alt="Bild aus der Stadt" width={350}/>*/}
+                    <img src="/Maintour_small.png" alt="Bild aus der Stadt" width={350}/>
                     <Markup content={btoDisplayItem.description}/>
                 </div>
             }
