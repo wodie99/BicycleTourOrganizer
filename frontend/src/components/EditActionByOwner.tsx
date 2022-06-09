@@ -1,8 +1,8 @@
 import {BtoDisplayItem} from "../model/BtoDisplayItem";
 import {FormEvent, useState} from "react";
-import {toast} from "react-toastify";
 import "./EditActionByOwner.css"
 import {Markup} from "interweave";
+import {toast} from "react-toastify";
 
 type SetActionOwnerProps = {
     btoDisplayItem: BtoDisplayItem;
@@ -26,42 +26,42 @@ export default function EditActionByOwner({btoDisplayItem, changeBtoItem, userna
             status: status
         }
         changeBtoItem({...btoDisplayItem, ...updatedItem})
+        toast("Update gespeichert")
     }
     return (
         <div>
             <h1>Editpage für ActionOwner</h1>
-            <p>username: {username}</p>
-            <div>
-                <form onSubmit={onUpdate} className={"input-elements"}>
-                    <label>Die Felder Überschrift_1, Überschrift_2 und Beschreibung_1 sind nur im Status 'Vorbereitung
-                        zur Wahl' editierbar</label>
-                    <label>Überschrift_1</label>
-                    <h1>{btoDisplayItem.title1}</h1>
-                    <label>Überschrift_2</label>
-                    <h2>{btoDisplayItem.title2}</h2>
-                    <label>Beschreibung_1: </label>
-                    <Markup content={btoDisplayItem.description}/>
-                    <label>Beschreibung nach PREP4VOTE: </label>
-                    <textarea
-                        value={description2}
-                        onChange={event => setDescription2(event.target.value)}
-                    />
-                    <label>Status: </label>
-                    <select
-                        value={status}
-                        onChange={event => setStatus(event.target.value)}
-                    >
-                        <option selected value="{status}">{status}</option>
-                        <option value="NEW">Zurücksetzen auf Auswahl ActionOwner</option>
-                        <option value="PREP4VOTE">Vorbereitungen zur Wahl</option>
-                        <option value="VOTE">Wahl</option>
-                        <option value="PREP4FINISH">Bearbeitung nach Wahl</option>
-                        <option value="FINISH">Beendet</option>
-                    </select>
-                    <p>.</p>
-                    <input type={"submit"} value={"Einträge übernehmen"}/>
-                </form>
+            <label>Die Felder Überschrift_1, Überschrift_2 und Beschreibung_1 sind nur im Status 'Vorbereitung
+                zur Wahl' editierbar</label>
+            <div className={"read-only-text"}>
+                <label>Überschrift_1</label>
+                <h1>{btoDisplayItem.title1}</h1>
+                <label>Überschrift_2</label>
+                <h2>{btoDisplayItem.title2}</h2>
+                <label>Beschreibung_1: </label>
+                <Markup content={btoDisplayItem.description}/>
             </div>
+            <form onSubmit={onUpdate} className={"input-elements"}>
+                <label>Informationen nach Vorbereitung der Aktion: </label>
+                <textarea
+                    value={description2}
+                    onChange={event => setDescription2(event.target.value)}
+                />
+                <label>Status nach Datenübernahme: </label>
+                <select
+                    value={status}
+                    onChange={event => setStatus(event.target.value)}
+                >
+                    <option selected value="{status}">{status}</option>
+                    <option value="NEW">Zurücksetzen auf Auswahl ActionOwner</option>
+                    <option value="PREP4VOTE">Vorbereitungen zur Wahl</option>
+                    <option value="VOTE">Wahl</option>
+                    <option value="PREP4FINISH">Bearbeitung nach Wahl</option>
+                    <option value="FINISH">Beendet</option>
+                </select>
+                <p>.</p>
+                <input type={"submit"} value={"Einträge übernehmen"}/>
+            </form>
         </div>
     )
 }
