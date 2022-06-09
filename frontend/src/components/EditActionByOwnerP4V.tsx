@@ -70,8 +70,7 @@ export default function EditActionByOwnerP4V({btoDisplayItem, changeBtoItem, use
                         <option value="PREP4FINISH">Bearbeitung nach Wahl</option>
                         <option value="FINISH">Beendet</option>
                     </select>
-                    <p>.</p>
-                    <input type={"submit"} value={"Einträge übernehmen"}/>
+                    <input className={"input-button"} type={"submit"} value={"Einträge übernehmen"}/>
                 </form>
 
             </div>

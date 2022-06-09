@@ -10,7 +10,7 @@ type SetActionOwnerProps = {
     username: string;
 }
 
-export default function EditActionByOwner({btoDisplayItem, changeBtoItem, username}: SetActionOwnerProps) {
+export default function EditActionByOwner({btoDisplayItem, changeBtoItem}: SetActionOwnerProps) {
     const [status, setStatus] = useState(btoDisplayItem.status)
     const [description2, setDescription2] = useState(btoDisplayItem.description2)
     const [actionOwner, setActionOwner] = useState(btoDisplayItem.actionOwner)
@@ -59,8 +59,7 @@ export default function EditActionByOwner({btoDisplayItem, changeBtoItem, userna
                     <option value="PREP4FINISH">Bearbeitung nach Wahl</option>
                     <option value="FINISH">Beendet</option>
                 </select>
-                <p>.</p>
-                <input type={"submit"} value={"Einträge übernehmen"}/>
+                <input className={"input-button"} type={"submit"} value={"Einträge übernehmen"}/>
             </form>
         </div>
     )

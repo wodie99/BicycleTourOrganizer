@@ -64,7 +64,6 @@ export default function BtoDetailsPage({btoDisplayItems, changeBtoItem, updateVo
                                 <Markup content={btoItem.description}/>
                                 <hr/>
                                 <Markup content={btoItem.description2}/>
-                                <hr/>
                             </div>
                             <p>Status der Aktion: {btoItem.status}</p>
                             <p>AktionOwner: {btoItem.actionOwner}</p>
