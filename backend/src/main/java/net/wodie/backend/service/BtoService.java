@@ -22,8 +22,12 @@ public class BtoService {
     }
 
     public BtoItem updateBtoItem(BtoItem updatedBtoItem) {
+        if (updatedBtoItem.getStatus().equals("NEW")) {
+            updatedBtoItem.setActionOwner("");
+            clearVoteFields(updatedBtoItem);
+        }
         if (updatedBtoItem.getStatus().equals("PREP4VOTE")) {
-            checkVoteFields(updatedBtoItem);
+            clearVoteFields(updatedBtoItem);
         }
         return btoRepository.save(updatedBtoItem);
     }
@@ -34,13 +38,9 @@ public class BtoService {
                 .getStatus();
     }
 
-    private void checkVoteFields(BtoItem btoItem) {
-        if (btoItem.getActionMembers() == null) {
+    private void clearVoteFields(BtoItem btoItem) {
             btoItem.setActionMembers(Collections.emptyList());
-        }
-        if (btoItem.getActionNotMembers() == null) {
             btoItem.setActionNotMembers(Collections.emptyList());
-        }
     }
 
     @SuppressWarnings("java:S3776")

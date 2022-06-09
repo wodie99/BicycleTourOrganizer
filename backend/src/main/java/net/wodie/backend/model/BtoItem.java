@@ -23,6 +23,7 @@ public class BtoItem {
     private String title1;
     private String title2;
     private String description;
+    private String description2;
     private String status;
     private String actionOwner;
     private List<String> actionMembers;
