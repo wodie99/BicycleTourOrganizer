@@ -120,3 +120,4 @@ export default function BtoDetailsPage({btoDisplayItems, changeBtoItem, updateVo
         </div>
     )
 }
+
