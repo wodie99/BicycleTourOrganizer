@@ -1,6 +1,6 @@
 import {BtoDisplayItem} from "../model/BtoDisplayItem";
 import {FormEvent, useState} from "react";
-import "./EditActionByOwner.css"
+import "../style/EditActionByOwner.css"
 import {Markup} from "interweave";
 import {toast} from "react-toastify";
 

@@ -1,7 +1,7 @@
 import {BtoDisplayItem} from "../model/BtoDisplayItem";
 import {FormEvent, useState} from "react";
 import {toast} from "react-toastify";
-import "./EditActionByOwnerP4V.css"
+import "../style/EditActionByOwnerP4V.css"
 import {Markup} from "interweave";
 
 type SetActionOwnerP4VProps = {
