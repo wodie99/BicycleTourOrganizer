@@ -106,6 +106,10 @@ export default function BtoDetailsPage({btoDisplayItems, changeBtoItem, updateVo
                             </p>
                         </div>
                     }
+                    <div>
+                        <button onClick={onClickStatus}>aktuellerStatus:</button>
+                        <span>{btoItemStatus}</span>
+                    </div>
                 </div>
                 :
                 <div className={"details-page-error"}>
@@ -113,10 +117,6 @@ export default function BtoDetailsPage({btoDisplayItems, changeBtoItem, updateVo
                     <>{() => toast.error("BtoItem not found")}</>
                 </div>
             }
-            <div>
-                <button onClick={onClickStatus}>aktuellerStatus:</button>
-                <span>{btoItemStatus}</span>
-            </div>
         </div>
     )
 }

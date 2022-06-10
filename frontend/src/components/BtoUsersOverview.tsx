@@ -20,7 +20,7 @@ export default function BtoUsersOverview({btoDisplayItems}: BtoUsersOverviewProp
                             && item.category === "action"
                             && item.actionOwner
                             && item.actionOwner === username))
-                        .map(item => <BtoUserItemCard btoUserItem={item}/>)}
+                        .map(item => <BtoUserItemCard key={item.displayId} btoUserItem={item}/>)}
                     <hr/>
                     <h1>Aktionen an denen Du teilnimmst:</h1>
                     {btoDisplayItems.filter((item) => (
@@ -28,7 +28,7 @@ export default function BtoUsersOverview({btoDisplayItems}: BtoUsersOverviewProp
                             && item.category === "action"
                             && item.actionMembers
                             && item.actionMembers.includes(username)))
-                        .map(item => <BtoUserItemCard btoUserItem={item}/>)}
+                        .map(item => <BtoUserItemCard key={item.displayId} btoUserItem={item}/>)}
                     <hr/>
                     <h1>Aktionen an denen Du nicht teilnimmst:</h1>
                     {btoDisplayItems.filter((item) => (
@@ -36,7 +36,7 @@ export default function BtoUsersOverview({btoDisplayItems}: BtoUsersOverviewProp
                         && item.category === "action"
                         && item.actionNotMembers
                         && item.actionNotMembers.includes(username)))
-                        .map(item => <BtoUserItemCard btoUserItem={item}/>)}
+                        .map(item => <BtoUserItemCard key={item.displayId} btoUserItem={item}/>)}
                     <hr/>
                     <h2>Ende</h2>
                 </div>

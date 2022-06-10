@@ -6,7 +6,7 @@ export type BtoDisplayItem =  {
     title2: string;
     description: string;
     description2: string;
-    // pictureLink: string;
+    pictureLink: string;
     status:string;
     actionOwner: string;
     actionMembers: string[];
