@@ -60,6 +60,14 @@ export default function BtoDetailsPage({btoDisplayItems, changeBtoItem, updateVo
                             <div className={"content"}>
                                 <h1>{btoItem.title1}</h1>
                                 <h2>{btoItem.title2}</h2>
+                                {btoItem.pictureLink && (btoItem.pictureLink.length > 0) ?
+                                    <div className={"picture-frame"}>
+                                        <img className={"picture-detail"} src={`${btoItem.pictureLink}`}
+                                             alt="Bild aus der Stadt"/>
+                                    </div>
+                                    :
+                                    <></>
+                                }
                                 <Markup content={btoItem.description}/>
                                 <hr/>
                                 <Markup content={btoItem.description2}/>
