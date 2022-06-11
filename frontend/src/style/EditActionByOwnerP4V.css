@@ -1,0 +1,26 @@
+input, textarea, select {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    background-color: #bac2f6;
+    padding: 3px;
+}
+
+.input-elements{
+    display: flex;
+    flex-direction: column;
+}
+
+.input-elements label {
+    padding-top: 10px;
+}
+
+.input-button {
+    margin-top: 15px;
+    width: 180px;
+    background-color: #5c7457ff;
+    color: ghostwhite ;
+    padding: 3px 15px 3px 15px;
+    margin-left: 10px;
+    border-radius: 5px;
+}

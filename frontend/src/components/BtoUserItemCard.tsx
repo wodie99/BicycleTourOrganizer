@@ -1,5 +1,6 @@
 import {Markup} from "interweave";
 import {BtoDisplayItem} from "../model/BtoDisplayItem";
+import "../style/BtoUserItemCard.css"
 
 type BtoUserItemsCardProps = {
     btoUserItem: BtoDisplayItem;
@@ -7,16 +8,17 @@ type BtoUserItemsCardProps = {
 
 export default function BtoUserItemCard({btoUserItem}: BtoUserItemsCardProps) {
     return (
-        <div className={"bto-user-item-card"}>
-            <h2>Aktion: {btoUserItem.title1}</h2>
-            <h3>{btoUserItem.title2}</h3>
-            <div>
+        <div>
+            <div className={"content"}>
+                <h1>{btoUserItem.title1}</h1>
+                <h2>{btoUserItem.title2}</h2>
                 <Markup content={btoUserItem.description}/>
+                <hr/>
+                <Markup content={btoUserItem.description2}/>
             </div>
-            <h4>Status der Aktion: {btoUserItem.status}</h4>
-            <span><b>Teilnehmer: {btoUserItem.actionMembers} </b></span>
-            <span><b> Absagen: {btoUserItem.actionNotMembers}</b></span>
-
+            <p>Status der Aktion: {btoUserItem.status}<br/>
+            Teilnehmer: {btoUserItem.actionMembers} <br/>
+            Absagen: {btoUserItem.actionNotMembers}</p>
         </div>
     )
 }

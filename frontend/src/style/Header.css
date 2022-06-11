@@ -1,14 +1,27 @@
-header {
+.header-area {
     display: flex;
     flex-direction: row;
-    width: 460px;
-    height: 105px;
-    background-color: #616161;
+    width: 375px;
+    height: 116px;
+    top: 0;
+    background-color: #FFF5CBFF;
     position: fixed;
 }
 
+.header-content {
+    display: flex;
+    flex-direction: row;
+    width: 375px;
+    height: 105px;
+    top: 8px;
+    background-color: #5c7457ff;
+    position: fixed;
+    border-radius: 10px;
+
+}
+
 a {
-    font-size:18px;
+    font-size:0.9em;
     padding-right:10px;
     color: lightgrey;
 }
@@ -16,7 +29,7 @@ a {
 .row1 {
     font-size: 22px;
     padding-left: 20px;
-    padding-top: 25px;
+    padding-top: 8px;
     width: 500px;
     display: flex;
     justify-content: left;
@@ -26,16 +39,16 @@ a {
 }
 
 .row2 {
-    width: 460px;
+    width: 375px;
     display: flex;
     flex-direction: row;
     justify-content: right;
-    padding-top: 75px;
+    padding-top: 80px;
     position: fixed;
 }
 
 .row2-login {
-    width: 460px;
+    width: 375px;
     display: flex;
     flex-direction: row;
     justify-content: right;

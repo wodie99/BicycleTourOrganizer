@@ -1,0 +1,32 @@
+input, textarea, select {
+
+    padding: 3px;
+}
+
+.input-elements{
+    display: flex;
+    flex-direction: column;
+}
+
+.input-elements label {
+    padding-top: 10px;
+}
+
+.read-only-text {
+    background-color: #E8C190FF;
+    border-color: #fff5cb;
+    border-style: solid;
+    border-radius: 10px;
+    margin-top: 7px;
+    padding:7px;
+}
+
+.input-button {
+    margin-top: 15px;
+    width: 180px;
+    background-color: #5c7457ff;
+    color: ghostwhite ;
+    padding: 3px 15px 3px 15px;
+    margin-left: 10px;
+    border-radius: 5px;
+}

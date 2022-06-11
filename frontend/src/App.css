@@ -1,12 +1,34 @@
 .App {
-  width: 460px;
-  background-color: #e7e7e7;
+  width: 375px;
+  background-color: #FFF5CBFF;
   text-align: left;
   padding:10px;
 }
 
-h1,h2 {
+h1 {
+  font-size: 1.1em;
   text-align: center;
+}
+
+h2 {
+  font-size: 1em;
+  text-align: center;
+}
+
+h3,h4 {
+  font-size: 0.9em;
+}
+
+p,ul,span,label {
+  font-size: .9em;
+}
+
+button {
+  background-color: #5c7457ff;
+  color: ghostwhite ;
+  padding: 3px 15px 3px 15px;
+  margin-left: 10px;
+  border-radius: 5px;
 }
 
 .App-logo {
