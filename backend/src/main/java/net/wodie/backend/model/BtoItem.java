@@ -24,6 +24,7 @@ public class BtoItem {
     private String title2;
     private String description;
     private String description2;
+    private String pictureLink;
     private String status;
     private String actionOwner;
     private List<String> actionMembers;

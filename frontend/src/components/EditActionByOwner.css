@@ -1,8 +1,0 @@
-.input-elements{
-    display: flex;
-    flex-direction: column;
-}
-
-.input-elements label {
-    padding-top: 10px;
-}

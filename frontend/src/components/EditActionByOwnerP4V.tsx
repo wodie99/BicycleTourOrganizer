@@ -1,7 +1,7 @@
 import {BtoDisplayItem} from "../model/BtoDisplayItem";
 import {FormEvent, useState} from "react";
 import {toast} from "react-toastify";
-import "./EditActionByOwnerP4V.css"
+import "../style/EditActionByOwnerP4V.css"
 import {Markup} from "interweave";
 
 type SetActionOwnerP4VProps = {
@@ -70,8 +70,7 @@ export default function EditActionByOwnerP4V({btoDisplayItem, changeBtoItem, use
                         <option value="PREP4FINISH">Bearbeitung nach Wahl</option>
                         <option value="FINISH">Beendet</option>
                     </select>
-                    <p>.</p>
-                    <input type={"submit"} value={"Einträge übernehmen"}/>
+                    <input className={"input-button"} type={"submit"} value={"Einträge übernehmen"}/>
                 </form>
 
             </div>
