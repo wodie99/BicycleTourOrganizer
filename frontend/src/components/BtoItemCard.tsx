@@ -23,7 +23,7 @@ export default function BtoItemCard({btoDisplayItem}: BtoItemCardProps) {
                     <h1>{btoDisplayItem.title1}</h1>
                     <h2>{btoDisplayItem.title2}</h2>
                     <div className={"picture-frame"}>
-                        <img src = {`${btoDisplayItem.pictureLink}`} alt="Bild aus der Stadt"/>
+                        <img src = {`/images${btoDisplayItem.pictureLink}`} alt="Bild aus der Stadt"/>
                     </div>
                     <Markup content={btoDisplayItem.description}/>
                 </div>
