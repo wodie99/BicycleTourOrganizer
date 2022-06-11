@@ -1,6 +1,6 @@
 package net.wodie.backend.security.controller;
 
-import net.wodie.backend.security.model.AppUser;
+import net.wodie.backend.security.dto.AppUserLoginDto;
 import net.wodie.backend.security.service.JWTUtilService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,9 +25,9 @@ public class AppUserAuthController {
 
     @SuppressWarnings("java:S4684")
     @PostMapping("/login")
-    public String login(@RequestBody AppUser appUser) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(appUser.getUsername(), appUser.getPassword()));
-        return jwtUtilService.createToken(appUser.getUsername());
+    public String login(@RequestBody AppUserLoginDto appUserLoginDto) {
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(appUserLoginDto.getUsername(), appUserLoginDto.getPassword()));
+        return jwtUtilService.createToken(appUserLoginDto.getUsername());
     }
 
 }

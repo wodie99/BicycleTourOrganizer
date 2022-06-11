@@ -34,12 +34,11 @@ public class JWTAuthFilter extends OncePerRequestFilter {
                 String username = jwtUtilService.extractUsername(token);
                 setContext(username);
             } else {
-                System.out.println("Token is null or blank.");
+                logger.info("Token is null or blank.");
             }
         } catch (Exception ex){
-            System.out.println("JWT error." + ex.getMessage());
+            logger.error("JWT error." + ex.getMessage());
         }
-
         filterChain.doFilter(request, response);
     }
 

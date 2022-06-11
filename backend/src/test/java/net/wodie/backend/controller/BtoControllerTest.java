@@ -27,9 +27,6 @@ class BtoControllerTest {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    @LocalServerPort
-    private int port;
-
     @Autowired
     private WebTestClient testClient;
 
