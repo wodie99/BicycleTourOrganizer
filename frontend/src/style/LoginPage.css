@@ -1,3 +1,7 @@
 .login-page {
     padding-top: 120px;
 }
+
+.login-page button {
+    margin-top: 20px;
+}
