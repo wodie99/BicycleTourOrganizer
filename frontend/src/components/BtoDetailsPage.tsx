@@ -6,7 +6,6 @@ import "../style/BtoDetailsPage.css"
 import useBtoItemStatus from "../hooks/useBtoItemStatus";
 import SetActionOwner from "./SetActionOwner";
 import EditActionByOwner from "./EditActionByOwner";
-import ShowDummyText from "./ShowDummyText";
 import Vote from "./Vote";
 import {VoteSend} from "../model/VoteSend";
 import {toast} from "react-toastify";
@@ -34,9 +33,20 @@ export default function BtoDetailsPage({btoDisplayItems, changeBtoItem, updateVo
         navigate(`/`)
     }
 
-    const onClickStatus = () => {
-        if (id) {
-            getStatusById(id)
+    const printStatus = () => {
+        if (btoItem) {
+            switch (btoItem.status) {
+                case "NEW":
+                    return "Suche nach neuem Actionowner"
+                case "PREP4VOTE":
+                    return "Vorbereitung zur Wahl"
+                case "VOTE":
+                    return "Durchführung der Wahl"
+                case "PREP4FINISH":
+                    return "Durchführung der Aktion"
+                default:
+                    return "Aktion beendet"
+            }
         }
     }
 
@@ -48,8 +58,7 @@ export default function BtoDetailsPage({btoDisplayItems, changeBtoItem, updateVo
                             btoItem.status === "PREP4VOTE" ?
                                 <EditActionByOwnerP4V
                                     btoDisplayItem={btoItem}
-                                    changeBtoItem={changeBtoItem}
-                                    username={username}/>
+                                    changeBtoItem={changeBtoItem}/>
                                 :
                                 <EditActionByOwner
                                     btoDisplayItem={btoItem}
@@ -72,12 +81,32 @@ export default function BtoDetailsPage({btoDisplayItems, changeBtoItem, updateVo
                                 <hr/>
                                 <Markup content={btoItem.description2}/>
                             </div>
-                            <p>Status der Aktion: {btoItem.status}</p>
-                            <p>AktionOwner: {btoItem.actionOwner}</p>
-                            <p>Teilnehmer: {btoItem.actionMembers}</p>
-                            <p>Nicht teilnehmen: {btoItem.actionNotMembers}</p>
                         </div>
                     }
+                    <div className={"actionInfo"}>
+                        <p>AktionOwner: {btoItem.actionOwner} <br/>
+                            Status der Aktion: {printStatus()}</p>
+                    </div>
+
+                    {btoItem.status !== "NEW" && btoItem.status !== "PREP4VOTE" ?
+                        <div className={"voteField"}>
+                            <p>Nimmt an der Aktion teil:</p>
+                                <ul>
+                                    {btoItem.actionMembers.map((member) => (
+                                        <li> {member} </li>
+                                    ))}
+                                </ul>
+                            <p>Nimmt an der Aktion nicht teil:</p>
+                            <ul>
+                                {btoItem.actionNotMembers.map((member) => (
+                                    <li> {member} </li>
+                                ))}
+                            </ul>
+                        </div>
+                        :
+                        <></>
+                    }
+
                     {btoItem.status === "NEW" ?
                         <SetActionOwner
                             btoItem={btoItem}
@@ -86,15 +115,6 @@ export default function BtoDetailsPage({btoDisplayItems, changeBtoItem, updateVo
                             btoItemStatus={btoItemStatus}
                             getStatusById={getStatusById}/>
                         : <></>
-                    }
-                    {btoItem.status === "PREP4VOTE" ?
-                        <ShowDummyText btoDisplayItem={btoItem} username={username}/> : <></>
-                    }
-                    {btoItem.status === "PREP4FINISH" ?
-                        <ShowDummyText btoDisplayItem={btoItem} username={username}/> : <></>
-                    }
-                    {btoItem.status === "FINISH" ?
-                        <ShowDummyText btoDisplayItem={btoItem} username={username}/> : <></>
                     }
                     {btoItem.status === "VOTE" ?
                         <div>
@@ -107,17 +127,10 @@ export default function BtoDetailsPage({btoDisplayItems, changeBtoItem, updateVo
                         </div>
                         :
                         <div>
-                            <p>AktionOwner: {btoItem.actionOwner}</p>
-                            <p>Im Momente keine Wahl da Status: {btoItem.status} </p>
-                            <p>
-                                <button onClick={onClickBack}>zurück</button>
-                            </p>
+                            <p>Im Momente keine Wahl! </p>
+                            <button onClick={onClickBack}>zurück</button>
                         </div>
                     }
-                    <div>
-                        <button onClick={onClickStatus}>aktuellerStatus:</button>
-                        <span>{btoItemStatus}</span>
-                    </div>
                 </div>
                 :
                 <div className={"details-page-error"}>
