@@ -15,9 +15,15 @@
     border-radius: 10px;
 }
 
-img {
+.picture-info {
     max-height: 250px;
     max-width: 300px;
+    border-radius: 10px;
+}
+
+.picture-action {
+    max-height: 100px;
+    max-width: 100px;
     border-radius: 10px;
 }
 

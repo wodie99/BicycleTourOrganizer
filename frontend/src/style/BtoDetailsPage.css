@@ -25,3 +25,17 @@
     margin-top: 7px;
     padding:7px;
 }
+
+.picture-frame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    border-radius: 10px;
+}
+
+.picture-detail {
+    max-height: 250px;
+    max-width: 300px;
+    border-radius: 10px;
+}

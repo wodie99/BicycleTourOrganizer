@@ -17,6 +17,7 @@ export default function EditActionByOwnerP4V({btoDisplayItem, changeBtoItem, use
     const [status, setStatus] = useState(btoDisplayItem.status)
     const [actionOwner, setActionOwner] = useState(btoDisplayItem.actionOwner)
     const [description, setDescription] = useState(btoDisplayItem.description)
+    const [pictureLink, setPicLink] = useState(btoDisplayItem.pictureLink)
 
 
     const onUpdate = (event: FormEvent<HTMLFormElement>) => {
@@ -33,13 +34,22 @@ export default function EditActionByOwnerP4V({btoDisplayItem, changeBtoItem, use
             title2: title2,
             description: description,
             status: status,
-            actionOwner: actionOwner
+            actionOwner: actionOwner,
+            pictureLink: pictureLink
         }
         changeBtoItem({...btoDisplayItem, ...updatedItem})
     }
     return (
         <div>
             <h1>Editpage für ActionOwner</h1>
+            {btoDisplayItem.pictureLink && (btoDisplayItem.pictureLink.length > 0) ?
+                <div className={"picture-frame"}>
+                    <img className={"picture-detail"} src={`${ btoDisplayItem.pictureLink}`}
+                         alt="Bild aus der Stadt"/>
+                </div>
+                :
+                <></>
+            }
             <p>username: {username}</p>
             <div>
                 <form onSubmit={onUpdate} className={"input-elements"}>
@@ -51,6 +61,9 @@ export default function EditActionByOwnerP4V({btoDisplayItem, changeBtoItem, use
                     <label>Überschrift_2</label>
                     <input type={"text"} placeholder="Add a new item" value={title2}
                            onChange={event => setTitle2(event.target.value)}/>
+                    <label>Link zu einem Bild: </label>
+                    <input type={"text"} placeholder="Add a Web-Link to a picture" value={pictureLink}
+                           onChange={event => setPicLink(event.target.value)}/>
                     <label>Beschreibung_1: </label>
                     <textarea
                         value={description}
