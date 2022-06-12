@@ -25,7 +25,7 @@ Die Bearbeitung der Aktionen erfolgt über die Detailspage. Hier wird je nach St
 Um die Benutzung verschiedener Benutzer zu ermöglichen muß sich der Benutzer in der App anmelden. Hierbei wird als Sicherheitsmechanismus Spring Security mit JWT eingesetzt.
 Zum Wechsel des Benutzers kann die Logout-Funktion genutzt werden.
 
-Hinzugekommen ist nun auch die Einrichtung eines Farbschemas undein App-Logo.
+Hinzugekommen ist nun auch die Einrichtung eines Farbschemas und ein App-Logo.
 Außerdem die Möglichkeit Bilder für die Infobereiche aus dem public-Folder zu laden aber auch, dass der Actionowner ein Bild über einen Link hinzufügen kann.
 
 Der momentane Stand ist zu sehen: [Link zu Heroku] (https://projekt-bto.herokuapp.com/) (user: AntonA; passwort: test)
