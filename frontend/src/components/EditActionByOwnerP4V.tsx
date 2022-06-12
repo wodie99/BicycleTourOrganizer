@@ -7,10 +7,9 @@ import {Markup} from "interweave";
 type SetActionOwnerP4VProps = {
     btoDisplayItem: BtoDisplayItem;
     changeBtoItem: (updatedBtoItem: BtoDisplayItem) => void;
-    username: string;
 }
 
-export default function EditActionByOwnerP4V({btoDisplayItem, changeBtoItem, username}: SetActionOwnerP4VProps) {
+export default function EditActionByOwnerP4V({btoDisplayItem, changeBtoItem}: SetActionOwnerP4VProps) {
 
     const [title1, setTitle1] = useState(btoDisplayItem.title1)
     const [title2, setTitle2] = useState(btoDisplayItem.title2)
@@ -50,11 +49,10 @@ export default function EditActionByOwnerP4V({btoDisplayItem, changeBtoItem, use
                 :
                 <></>
             }
-            <p>username: {username}</p>
             <div>
                 <form onSubmit={onUpdate} className={"input-elements"}>
-                    <label>Die Felder Überschrift_1, Überschrift_2 und Beschreibung_1 sind nur im Status 'Vorbereitung
-                        zur Wahl' editierbar</label>
+                    <label>Die Felder 'Überschrift_1', 'Überschrift_2' und 'Beschreibung_1' sind nur im Status 'Vorbereitung
+                        zur Wahl' editierbar. Das Feld 'Beschreibung_2' ist ab der Wahl editierbar. </label>
                     <label>Überschrift_1</label>
                     <input type={"text"} placeholder="Add a new item" value={title1}
                            onChange={event => setTitle1(event.target.value)}/>
@@ -69,7 +67,7 @@ export default function EditActionByOwnerP4V({btoDisplayItem, changeBtoItem, use
                         value={description}
                         onChange={event => setDescription(event.target.value)}
                     />
-                    <label>Beschreibung - Edit after Vote: </label>
+                    <label>Beschreibung_2: </label>
                     <Markup content={btoDisplayItem.description2}/>
                     <label>Status: </label>
                     <select
@@ -85,7 +83,6 @@ export default function EditActionByOwnerP4V({btoDisplayItem, changeBtoItem, use
                     </select>
                     <input className={"input-button"} type={"submit"} value={"Einträge übernehmen"}/>
                 </form>
-
             </div>
         </div>
     )

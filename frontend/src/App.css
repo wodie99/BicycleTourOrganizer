@@ -19,8 +19,13 @@ h3,h4 {
   font-size: 0.9em;
 }
 
-p,ul,span,label {
-  font-size: .9em;
+p,ul,span {
+  font-size: 0.9em;
+}
+
+label {
+  font-size: 0.8em;
+  color: #787878;
 }
 
 button {

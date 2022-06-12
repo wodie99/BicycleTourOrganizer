@@ -1,5 +1,6 @@
 package net.wodie.backend.security.filter;
 
+import lombok.extern.slf4j.Slf4j;
 import net.wodie.backend.security.service.JWTUtilService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+@Slf4j
 @Component
 public class JWTAuthFilter extends OncePerRequestFilter {
 
@@ -34,10 +36,10 @@ public class JWTAuthFilter extends OncePerRequestFilter {
                 String username = jwtUtilService.extractUsername(token);
                 setContext(username);
             } else {
-                System.out.println("Token is null or blank.");
+                log.warn("Token is null or blank.");
             }
         } catch (Exception ex){
-            System.out.println("JWT error." + ex.getMessage());
+            log.error("JWT error." + ex.getMessage());
         }
 
         filterChain.doFilter(request, response);

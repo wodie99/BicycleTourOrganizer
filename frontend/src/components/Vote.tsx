@@ -74,10 +74,6 @@ export default function Vote({btoItem, username, updateVote, btoItemStatus, getS
 
     return (<div>
             <h1>Wahl zur Teilnahme</h1>
-            <p>Status der Aktion: {btoItem.status}</p>
-            <p>AktionOwner: {btoItem.actionOwner}</p>
-            <p>Teilnehmer: {btoItem.actionMembers}</p>
-            <p>Nicht teilnehmen: {btoItem.actionNotMembers}</p>
             <span> Teilnehmen? </span>
             <button onClick={onClickYes}>ja</button>
             <button onClick={onClickNo}>nein</button>
