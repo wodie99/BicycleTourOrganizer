@@ -23,6 +23,9 @@ Die Daten für die App sind in der MongoDB gespeichert. Angezeigt wird ein Heade
 Von hier aus kann auf die Übersichtsseite, die userspezifische Seite und die Detailsspage für Aktionen gewechselt werden.
 Die Bearbeitung der Aktionen erfolgt über die Detailspage. Hier wird je nach Status und Benutzer die momentan mögliche Art der Bearbeitung angezeigt.
 Um die Benutzung verschiedener Benutzer zu ermöglichen muß sich der Benutzer in der App anmelden. Hierbei wird als Sicherheitsmechanismus Spring Security mit JWT eingesetzt.
-Zum Wechsel des Benutzers kann die Logout-Funktion genutzt werden
+Zum Wechsel des Benutzers kann die Logout-Funktion genutzt werden.
 
-Der momentane Stand ist zu sehen: [Link zu Heroku] (https://projekt-bto.herokuapp.com/)
+Hinzugekommen ist nun auch die Einrichtung eines Farbschemas und ein App-Logo.
+Außerdem die Möglichkeit Bilder für die Infobereiche aus dem public-Folder zu laden aber auch, dass der Actionowner ein Bild über einen Link hinzufügen kann.
+
+Der momentane Stand ist zu sehen: [Link zu Heroku] (https://projekt-bto.herokuapp.com/) (user: AntonA; passwort: test)

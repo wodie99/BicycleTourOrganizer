@@ -13,11 +13,18 @@
     align-items: center;
     width: 350px;
     border-radius: 10px;
+    margin-top: 8px;
 }
 
-img {
+.picture-info {
     max-height: 250px;
     max-width: 300px;
+    border-radius: 10px;
+}
+
+.picture-action {
+    max-height: 100px;
+    max-width: 100px;
     border-radius: 10px;
 }
 
@@ -34,6 +41,9 @@ img {
     font-size: 0.9em;
 }
 
+.action-status {
+    font-size: 0.7em;
+}
 
 .bto-item-action-card button  {
     margin-left: 40px ;
