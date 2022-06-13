@@ -23,7 +23,9 @@ function App() {
             <Routes>
                 <Route element={<RequireAuth/>}>
                     <Route path={"/"} element={<BtoItemsOverview btoDisplayItems={btoDisplayItems}/>}/>
-                    <Route path={"/userpage"} element={<BtoUsersOverview btoDisplayItems={btoDisplayItems}/>}/>
+                    <Route path={"/userpage"} element={<BtoUsersOverview
+                        btoDisplayItems={btoDisplayItems}
+                        username={username}/>}/>
                     <Route path={"/logout"} element={<LogoutPage setUsername={setUsername}/>}/>
                     <Route path={'/btoItem/:id'} element={<BtoDetailsPage
                         btoDisplayItems={btoDisplayItems}

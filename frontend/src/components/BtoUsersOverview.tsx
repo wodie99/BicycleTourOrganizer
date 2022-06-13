@@ -1,15 +1,13 @@
 import {BtoDisplayItem} from "../model/BtoDisplayItem";
 import BtoUserItemCard from "./BtoUserItemCard";
 import "../style/BtoUsersOverview.css"
-import useUsername from "../hooks/useUsername";
 
 type BtoUsersOverviewProps = {
-    btoDisplayItems: BtoDisplayItem [];
+    btoDisplayItems: BtoDisplayItem[];
+    username: string;
 }
 
-export default function BtoUsersOverview({btoDisplayItems}: BtoUsersOverviewProps) {
-    const {username} = useUsername()
-    console.log("Username aus BtoUserOverview: ", {username})
+export default function BtoUsersOverview({btoDisplayItems, username}: BtoUsersOverviewProps) {
 
     return (<div className={"bto-users-overview"}>
             {username ?

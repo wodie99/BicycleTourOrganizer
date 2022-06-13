@@ -10,6 +10,7 @@ import Vote from "./Vote";
 import {VoteSend} from "../model/VoteSend";
 import {toast} from "react-toastify";
 import EditActionByOwnerP4V from "./EditActionByOwnerP4V";
+import printStatus from "../service/printStatus";
 
 type DetailsPageProps = {
     btoDisplayItems: BtoDisplayItem[];
@@ -30,24 +31,7 @@ export default function BtoDetailsPage({btoDisplayItems, changeBtoItem, updateVo
     }, [btoDisplayItems, id])
 
     const onClickBack = () => {
-        navigate(`/`)
-    }
-
-    const printStatus = () => {
-        if (btoItem) {
-            switch (btoItem.status) {
-                case "NEW":
-                    return "Suche nach neuem Actionowner"
-                case "PREP4VOTE":
-                    return "Vorbereitung zur Wahl"
-                case "VOTE":
-                    return "Durchführung der Wahl"
-                case "PREP4FINISH":
-                    return "Durchführung der Aktion"
-                default:
-                    return "Aktion beendet"
-            }
-        }
+        navigate(-1)
     }
 
     return (
@@ -85,7 +69,7 @@ export default function BtoDetailsPage({btoDisplayItems, changeBtoItem, updateVo
                     }
                     <div className={"actionInfo"}>
                         <p>AktionOwner: {btoItem.actionOwner} <br/>
-                            Status der Aktion: {printStatus()}</p>
+                            Status der Aktion: {printStatus(btoItem.status)}</p>
                     </div>
 
                     {btoItem.status !== "NEW" && btoItem.status !== "PREP4VOTE" ?
