@@ -22,6 +22,16 @@ export default function BtoUsersOverview({btoDisplayItems}: BtoUsersOverviewProp
                             && item.actionOwner === username))
                         .map(item => <BtoUserItemCard key={item.displayId} btoUserItem={item}/>)}
                     <hr/>
+                    <h1>Noch offene Wahlmöglichkeit:</h1>
+                    {btoDisplayItems.filter((item) => (
+                        item.category
+                        && item.category === "action"
+                        && item.status === "VOTE"
+                        && item.actionOwner
+                        && !item.actionMembers.includes(username)
+                        && !item.actionNotMembers.includes(username)))
+                        .map(item => <BtoUserItemCard key={item.displayId} btoUserItem={item}/>)}
+                    <hr/>
                     <h1>Aktionen an denen Du teilnimmst:</h1>
                     {btoDisplayItems.filter((item) => (
                             item.category

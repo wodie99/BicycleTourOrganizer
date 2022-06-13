@@ -7,6 +7,22 @@ type BtoUserItemsCardProps = {
 }
 
 export default function BtoUserItemCard({btoUserItem}: BtoUserItemsCardProps) {
+    const printStatus = () => {
+        if (btoUserItem) {
+            switch (btoUserItem.status) {
+                case "NEW":
+                    return "Suche nach neuem Actionowner"
+                case "PREP4VOTE":
+                    return "Vorbereitung zur Wahl"
+                case "VOTE":
+                    return "Durchführung der Wahl"
+                case "PREP4FINISH":
+                    return "Durchführung der Aktion"
+                default:
+                    return "Aktion beendet"
+            }
+        }
+    }
     return (
         <div>
             <div className={"content"}>
@@ -16,9 +32,25 @@ export default function BtoUserItemCard({btoUserItem}: BtoUserItemsCardProps) {
                 <hr/>
                 <Markup content={btoUserItem.description2}/>
             </div>
-            <p>Status der Aktion: {btoUserItem.status}<br/>
-            Teilnehmer: {btoUserItem.actionMembers} <br/>
-            Absagen: {btoUserItem.actionNotMembers}</p>
+            <div className={"actionInfo"}>
+                <p>AktionOwner: {btoUserItem.actionOwner} <br/>
+                    Status der Aktion: {printStatus()}</p>
+            </div>
+            <div className={"voteField"}>
+                <p>Nimmt an der Aktion teil:</p>
+                <ul>
+                    {btoUserItem.actionMembers.map((member) => (
+                        <li> {member} </li>
+                    ))}
+                </ul>
+                <p>Nimmt an der Aktion nicht teil:</p>
+                <ul>
+                    {btoUserItem.actionNotMembers.map((member) => (
+                        <li> {member} </li>
+                    ))}
+                </ul>
+            </div>
         </div>
+
     )
 }
