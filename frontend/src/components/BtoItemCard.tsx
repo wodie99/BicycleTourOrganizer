@@ -2,6 +2,7 @@ import {Markup} from "interweave";
 import {BtoDisplayItem} from "../model/BtoDisplayItem";
 import "../style/BtoItemCard.css"
 import {useNavigate} from "react-router-dom";
+import printStatus from "../service/printStatus";
 
 type BtoItemCardProps = {
     btoDisplayItem: BtoDisplayItem;
@@ -23,7 +24,7 @@ export default function BtoItemCard({btoDisplayItem}: BtoItemCardProps) {
                         :
                         <></>
                     }
-                    <p className={"action-status"}>Status: {btoDisplayItem.status} </p>
+                    <p className={"action-status"}>Status: {printStatus(btoDisplayItem.status)} </p>
                     <button onClick={() => navigate(`btoItem/${btoDisplayItem.id}`)}>Details</button>
                 </div>
                 :

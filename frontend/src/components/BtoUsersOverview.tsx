@@ -1,15 +1,13 @@
 import {BtoDisplayItem} from "../model/BtoDisplayItem";
 import BtoUserItemCard from "./BtoUserItemCard";
 import "../style/BtoUsersOverview.css"
-import useUsername from "../hooks/useUsername";
 
 type BtoUsersOverviewProps = {
-    btoDisplayItems: BtoDisplayItem [];
+    btoDisplayItems: BtoDisplayItem[];
+    username: string;
 }
 
-export default function BtoUsersOverview({btoDisplayItems}: BtoUsersOverviewProps) {
-    const {username} = useUsername()
-    console.log("Username aus BtoUserOverview: ", {username})
+export default function BtoUsersOverview({btoDisplayItems, username}: BtoUsersOverviewProps) {
 
     return (<div className={"bto-users-overview"}>
             {username ?
@@ -20,6 +18,16 @@ export default function BtoUsersOverview({btoDisplayItems}: BtoUsersOverviewProp
                             && item.category === "action"
                             && item.actionOwner
                             && item.actionOwner === username))
+                        .map(item => <BtoUserItemCard key={item.displayId} btoUserItem={item}/>)}
+                    <hr/>
+                    <h1>Noch offene Wahlmöglichkeit:</h1>
+                    {btoDisplayItems.filter((item) => (
+                        item.category
+                        && item.category === "action"
+                        && item.status === "VOTE"
+                        && item.actionOwner
+                        && !item.actionMembers.includes(username)
+                        && !item.actionNotMembers.includes(username)))
                         .map(item => <BtoUserItemCard key={item.displayId} btoUserItem={item}/>)}
                     <hr/>
                     <h1>Aktionen an denen Du teilnimmst:</h1>

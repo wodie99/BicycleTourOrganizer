@@ -37,6 +37,7 @@ export default function EditActionByOwnerP4V({btoDisplayItem, changeBtoItem}: Se
             pictureLink: pictureLink
         }
         changeBtoItem({...btoDisplayItem, ...updatedItem})
+        toast("Update gespeichert")
     }
     return (
         <div>
