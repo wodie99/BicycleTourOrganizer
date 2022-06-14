@@ -27,9 +27,6 @@ class BtoControllerTest {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    @LocalServerPort
-    private int port;
-
     @Autowired
     private WebTestClient testClient;
 
@@ -60,6 +57,25 @@ class BtoControllerTest {
 
         //THEN
         List<BtoItem> expected = List.of(initItem1());
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void getAllBtoItemsTest_DbIsEmpty() {
+        //GIVEN
+
+        //WHEN
+        List<BtoItem> actual = testClient.get()
+                .uri("/api/btoItem")
+                .headers(http -> http.setBearerAuth(jwtToken))
+                .exchange()
+                .expectStatus().is2xxSuccessful()
+                .expectBodyList(BtoItem.class)
+                .returnResult()
+                .getResponseBody();
+
+        //THEN
+        List<BtoItem> expected = List.of();
         assertEquals(expected, actual);
     }
 
@@ -118,10 +134,21 @@ class BtoControllerTest {
 
         //THEN
         assertNotEquals(initItem1a(), actual);
+        String actualStatus;
+        String actualDisplayId="";
+        if (actual!=null) {
+            actualStatus = actual.getStatus();
+            actualDisplayId = actual.getDisplayId();
+        } else {
+            actualStatus = "Wert ist NULL";
+        }
+        assertNotEquals("Wert ist NULL", actualStatus);
+        assertEquals("finished", actualStatus);
+        assertNull(actualDisplayId);
     }
 
     @Test
-    void getBtoItemStatusByIdTest() {
+    void getBtoItemStatusByIdTest_IdIsOk() {
         //GIVEN
         btoRepository.insert(initItem1());
 
@@ -141,8 +168,29 @@ class BtoControllerTest {
         Assertions.assertEquals(expected, actual);
     }
 
+
     @Test
-    void updateBtoVoteTest() {
+    void getBtoItemStatusByIdTest_IdIsNotOk() {
+        //GIVEN
+        btoRepository.insert(initItem1());
+
+        //WHEN
+        String actual = testClient.get()
+                .uri("/api/btoItem/status/5")
+                .headers(http -> http.setBearerAuth(jwtToken))
+                .exchange()
+                .expectStatus().is4xxClientError()
+                .expectBody(String.class)
+                .returnResult()
+                .getResponseBody();
+
+        //THEN
+        assertNotNull(actual);
+        assertTrue(actual.contains("Element not found. Exception message: BtoItem not found with id: 5"));
+    }
+
+    @Test
+    void updateBtoVoteTest_U15VoteYes_StatusVote() {
         //GIVEN
         btoRepository.insert(initItem1());
 
@@ -150,7 +198,10 @@ class BtoControllerTest {
         BtoItem actual = testClient.put()
                 .uri("/api/btoItem/vote/"+initItem1().getId())
                 .headers(http -> http.setBearerAuth(jwtToken))
-                .bodyValue(btoVote1())
+                .bodyValue(BtoVote.builder()
+                        .username("U15")
+                        .vote("YES")
+                        .build())
                 .exchange()
                 .expectStatus().is2xxSuccessful()
                 .expectBody(BtoItem.class)
@@ -163,11 +214,78 @@ class BtoControllerTest {
         assertFalse(actual.getActionNotMembers().contains("U15"));
     }
 
-    private BtoVote btoVote1() {
-        return BtoVote.builder()
-                .username("U15")
-                .vote("YES")
-                .build();
+    @Test
+    void updateBtoVoteTest_U15VoteYes_StatusNotVote() {
+        //GIVEN
+        btoRepository.insert(initItem1a());
+
+        //WHEN
+        String actual = testClient.put()
+                .uri("/api/btoItem/vote/"+initItem1a().getId())
+                .headers(http -> http.setBearerAuth(jwtToken))
+                .bodyValue(BtoVote.builder()
+                        .username("U15")
+                        .vote("YES")
+                        .build())
+                .exchange()
+                .expectStatus().is4xxClientError()
+                .expectBody(String.class)
+                .returnResult()
+                .getResponseBody();
+
+        //THEn
+        assertNotNull(actual);
+        assertTrue(actual.contains("Wrong status for Vote. Exception message: Actual Status of BtoItem: FINISHED"));
+    }
+
+
+    @Test
+    void updateBtoVoteTest_U15VoteNo_StatusVote() {
+        //GIVEN
+        btoRepository.insert(initItem1());
+
+        //WHEN
+        BtoItem actual = testClient.put()
+                .uri("/api/btoItem/vote/"+initItem1().getId())
+                .headers(http -> http.setBearerAuth(jwtToken))
+                .bodyValue(BtoVote.builder()
+                        .username("U15")
+                        .vote("NO")
+                        .build())
+                .exchange()
+                .expectStatus().is2xxSuccessful()
+                .expectBody(BtoItem.class)
+                .returnResult()
+                .getResponseBody();
+
+        //THEN
+        assertNotNull(actual);
+        assertTrue(actual.getActionNotMembers().contains("U15"));
+        assertFalse(actual.getActionMembers().contains("U15"));
+    }
+
+    @Test
+    void updateBtoVoteTest_U15VoteNo_StatusNotVote() {
+        //GIVEN
+        btoRepository.insert(initItem1a());
+
+        //WHEN
+        String actual = testClient.put()
+                .uri("/api/btoItem/vote/"+initItem1a().getId())
+                .headers(http -> http.setBearerAuth(jwtToken))
+                .bodyValue(BtoVote.builder()
+                        .username("U15")
+                        .vote("YES")
+                        .build())
+                .exchange()
+                .expectStatus().is4xxClientError()
+                .expectBody(String.class)
+                .returnResult()
+                .getResponseBody();
+
+        //THEn
+        assertNotNull(actual);
+        assertTrue(actual.contains("Wrong status for Vote. Exception message: Actual Status of BtoItem: FINISHED"));
     }
 
     private BtoItem initItem1() {

@@ -3,10 +3,9 @@ package net.wodie.backend.service;
 import net.wodie.backend.dto.BtoVote;
 import net.wodie.backend.model.BtoItem;
 import net.wodie.backend.repository.BtoRepository;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 import java.util.*;
+
 
 @Service
 public class BtoService {
@@ -67,7 +66,7 @@ public class BtoService {
                 }
                 return btoRepository.save(btoTemp);
             }
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Wrong status");
+            throw new IllegalStateException("Actual Status of BtoItem: " + btoTemp.getStatus());
         }
     }
 }

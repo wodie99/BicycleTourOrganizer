@@ -1,7 +1,7 @@
 .header-area {
     display: flex;
     flex-direction: row;
-    width: 375px;
+    width: 368px;
     height: 116px;
     top: 0;
     background-color: #FFF5CBFF;
@@ -11,7 +11,7 @@
 .header-content {
     display: flex;
     flex-direction: row;
-    width: 375px;
+    width: 368px;
     height: 105px;
     top: 8px;
     background-color: #5c7457ff;
@@ -39,7 +39,7 @@ a {
 }
 
 .row2 {
-    width: 375px;
+    width: 368px;
     display: flex;
     flex-direction: row;
     justify-content: right;
@@ -48,7 +48,7 @@ a {
 }
 
 .row2-login {
-    width: 375px;
+    width: 368px;
     display: flex;
     flex-direction: row;
     justify-content: right;
