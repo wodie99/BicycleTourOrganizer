@@ -140,9 +140,9 @@ class BtoControllerTest {
             actualStatus = actual.getStatus();
             actualDisplayId = actual.getDisplayId();
         } else {
-            actualStatus = "Wert ist NULL";
+            actualStatus = "Value ist NULL";
         }
-        assertNotEquals("Wert ist NULL", actualStatus);
+        assertNotEquals("Value ist NULL", actualStatus);
         assertEquals("finished", actualStatus);
         assertNull(actualDisplayId);
     }
@@ -283,7 +283,7 @@ class BtoControllerTest {
                 .returnResult()
                 .getResponseBody();
 
-        //THEn
+        //THEN
         assertNotNull(actual);
         assertTrue(actual.contains("Wrong status for Vote. Exception message: Actual Status of BtoItem: FINISHED"));
     }
