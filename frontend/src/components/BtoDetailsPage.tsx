@@ -27,7 +27,7 @@ export default function BtoDetailsPage({btoDisplayItems, changeBtoItem, updateVo
     const navigate = useNavigate()
 
     useEffect(() => {
-        setBtoItem(btoDisplayItems.find((btoItem) => (btoItem.id === id)))
+        setBtoItem(btoDisplayItems.find((item) => (item.id === id)))
     }, [btoDisplayItems, id])
 
     const onClickBack = () => {
@@ -53,13 +53,11 @@ export default function BtoDetailsPage({btoDisplayItems, changeBtoItem, updateVo
                             <div className={"content"}>
                                 <h1>{btoItem.title1}</h1>
                                 <h2>{btoItem.title2}</h2>
-                                {btoItem.pictureLink && (btoItem.pictureLink.length > 0) ?
+                                {btoItem.pictureLink && (btoItem.pictureLink.length > 0) &&
                                     <div className={"picture-frame"}>
                                         <img className={"picture-detail"} src={`${btoItem.pictureLink}`}
                                              alt="Bild aus der Stadt"/>
                                     </div>
-                                    :
-                                    <></>
                                 }
                                 <Markup content={btoItem.description}/>
                                 <hr/>
@@ -72,7 +70,7 @@ export default function BtoDetailsPage({btoDisplayItems, changeBtoItem, updateVo
                             Status der Aktion: {printStatus(btoItem.status)}</p>
                     </div>
 
-                    {btoItem.status !== "NEW" && btoItem.status !== "PREP4VOTE" ?
+                    {btoItem.status !== "NEW" && btoItem.status !== "PREP4VOTE" &&
                         <div className={"voteField"}>
                             <p>Nimmt an der Aktion teil:</p>
                                 <ul>
@@ -87,18 +85,15 @@ export default function BtoDetailsPage({btoDisplayItems, changeBtoItem, updateVo
                                 ))}
                             </ul>
                         </div>
-                        :
-                        <></>
                     }
 
-                    {btoItem.status === "NEW" ?
+                    {btoItem.status === "NEW" &&
                         <SetActionOwner
                             btoItem={btoItem}
                             username={username}
                             changeBtoItem={changeBtoItem}
                             btoItemStatus={btoItemStatus}
                             getStatusById={getStatusById}/>
-                        : <></>
                     }
                     {btoItem.status === "VOTE" ?
                         <div>

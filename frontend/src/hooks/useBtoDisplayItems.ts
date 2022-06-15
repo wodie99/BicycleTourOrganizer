@@ -19,9 +19,9 @@ export default function useBtoDisplayItems() {
 
     const changeBtoItem = (updatedBtoItem: BtoDisplayItem) => {
         putBtoItem(updatedBtoItem, token)
-            .then(updatedBtoItem => {
-                setBtoDisplayitems(btoDisplayItems.map(item => item.id === updatedBtoItem.id ? updatedBtoItem : item))
-                return updatedBtoItem
+            .then(updatedItem => {
+                setBtoDisplayitems(btoDisplayItems.map(item => item.id === updatedItem.id ? updatedItem : item))
+                return updatedItem
             })
             .catch(() => toast.error("Connection failed!! Please retry later."))
     }
