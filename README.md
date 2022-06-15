@@ -13,8 +13,8 @@ Unter der Übersicht des Tages werden dann mögliche Aktionen des Tages aufgelis
 Nach anklicken eines Aktion-Buttons, wird die Detailseite der Aktion angezeigt. Neben der Anzeige der momentan vorhandenen Details kann hier, je nach Status der Aktion, der Teilnehmer die Organisation der Aktion übernehmen, die eigene Teilnahme an einer Aktion anmelden oder auch mitteilen, dass man an dieser Aktion nicht teilnimmt.
 
 Auf der benutzerspezifischen Seite, werden nochmals alle Aktionen des Benutzers angezeigt, gruppiert nach:
-- Aktionen, zu denen der Benutzer noch keine Rückmeldung gegeben hat
 - Aktionen, die der Benutzer selber organisiert
+- Aktionen, zu denen der Benutzer noch keine Rückmeldung gegeben hat
 - Aktionen an denen der Benutzer teilnimmt
 - Aktionen von denen sich der Benutzer abgemeldet hat
 
