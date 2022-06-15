@@ -16,13 +16,11 @@ export default function BtoItemCard({btoDisplayItem}: BtoItemCardProps) {
                 <div className={"bto-item-action-card"}>
                     <div className={"action-title1"}>Aktion: {btoDisplayItem.title1}</div>
                     <div className={"action-title2"}> {btoDisplayItem.title2}</div>
-                    {btoDisplayItem.pictureLink && (btoDisplayItem.pictureLink.length > 0) ?
+                    {btoDisplayItem.pictureLink && (btoDisplayItem.pictureLink.length > 0) &&
                         <div className={"picture-frame"}>
                             <img className={"picture-action"} src={`${btoDisplayItem.pictureLink}`}
                                  alt="Bild aus der Stadt"/>
                         </div>
-                        :
-                        <></>
                     }
                     <p className={"action-status"}>Status: {printStatus(btoDisplayItem.status)} </p>
                     <button onClick={() => navigate(`btoItem/${btoDisplayItem.id}`)}>Details</button>
