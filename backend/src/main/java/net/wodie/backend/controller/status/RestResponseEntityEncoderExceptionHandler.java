@@ -6,9 +6,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import java.time.LocalDateTime;
 import java.util.NoSuchElementException;
+import java.util.concurrent.CompletionException;
 
 @ControllerAdvice
 public class RestResponseEntityEncoderExceptionHandler extends ResponseEntityExceptionHandler {
@@ -36,5 +38,18 @@ public class RestResponseEntityEncoderExceptionHandler extends ResponseEntityExc
 
         return handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
+
+    @ExceptionHandler(value = { IllegalStateException.class })
+    protected ResponseEntity<Object> handleConflict(IllegalStateException ex, WebRequest request){
+
+        ErrorResponse bodyOfResponse = ErrorResponse.builder()
+                .errorMessage("Wrong status for Vote. Exception message: " + ex.getMessage())
+                .timestamp(LocalDateTime.now())
+                .requestUri(request.getDescription(false))
+                .build();
+
+        return handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+    }
+
 }
 

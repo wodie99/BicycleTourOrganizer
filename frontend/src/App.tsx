@@ -18,8 +18,10 @@ function App() {
 
     return (
         <div className="App">
-            <ToastContainer/>
-            <Header />
+            <ToastContainer
+                position="bottom-center"
+                autoClose={1000}/>
+            <Header/>
             <Routes>
                 <Route element={<RequireAuth/>}>
                     <Route path={"/"} element={<BtoItemsOverview btoDisplayItems={btoDisplayItems}/>}/>
@@ -33,7 +35,7 @@ function App() {
                         updateVote={updateVote}
                         username={username}/>}/>
                 </Route>
-                <Route path={'/login'} element={<LoginPage />}/>
+                <Route path={'/login'} element={<LoginPage/>}/>
             </Routes>
         </div>
     );
