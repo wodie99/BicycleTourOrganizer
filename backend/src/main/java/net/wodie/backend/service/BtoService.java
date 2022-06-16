@@ -51,17 +51,26 @@ public class BtoService {
             BtoItem btoTemp = btoItem.get();
             if (btoTemp.getStatus().equals("VOTE")) {
                 if (btoVote.getVote().equals("YES")) {
-                    if (!btoTemp.getActionMembers().contains(btoVote.getUsername()))
-                        btoTemp.getActionMembers().add(btoVote.getUsername());
+                    if (!btoTemp.getActionMembers().contains(btoVote.getUsername())) {
+                        List<String> tempList = new ArrayList<>(btoTemp.getActionMembers());
+                        tempList.add(btoVote.getUsername());
+                        btoTemp.setActionMembers(tempList);
+                    }
                     if (btoTemp.getActionNotMembers().contains(btoVote.getUsername())) {
-                        btoTemp.getActionNotMembers().remove(btoVote.getUsername());
+                        List<String> tempList = new ArrayList<>(btoTemp.getActionNotMembers());
+                        tempList.remove(btoVote.getUsername());
+                        btoTemp.setActionNotMembers(tempList);
                     }
                 } else {
                     if (!btoTemp.getActionNotMembers().contains(btoVote.getUsername())) {
-                        btoTemp.getActionNotMembers().add(btoVote.getUsername());
+                        List<String> tempList = new ArrayList<>(btoTemp.getActionNotMembers());
+                        tempList.add(btoVote.getUsername());
+                        btoTemp.setActionNotMembers(tempList);
                     }
                     if (btoTemp.getActionMembers().contains(btoVote.getUsername())) {
-                        btoTemp.getActionMembers().remove(btoVote.getUsername());
+                        List<String> tempList = new ArrayList<>(btoTemp.getActionMembers());
+                        tempList.remove(btoVote.getUsername());
+                        btoTemp.setActionMembers(tempList);
                     }
                 }
                 return btoRepository.save(btoTemp);
